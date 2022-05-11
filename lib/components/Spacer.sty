@@ -1,0 +1,25 @@
+\pgfkeys{
+	/newsletter/spacer/.cd,
+	height/.store in=\spacerHeight,
+	height/.default={\nlmargin},
+}
+
+
+
+\newcommand{\Spacer}[1][]{%
+	\pgfkeys{/newsletter/spacer/.cd,#1}%
+	\begin{tikzpicture}%
+		\fill[%
+			inner sep=0,
+			outer sep=0,
+			pattern={%
+				Lines[%
+					distance=4mm,
+					angle=45,
+					line width=2mm%
+				]%
+			},
+			pattern color=red!33%
+		] (0,0) rectangle (\nlwidth,\spacerHeight);
+	\end{tikzpicture}%
+}
