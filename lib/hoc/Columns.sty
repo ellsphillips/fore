@@ -1,0 +1,61 @@
+\makeatletter
+
+\newcounter{acolumn} % Track current column index
+\newlength{\acolumnmaxheight} % Maximum column height
+
+
+
+% `column` replacement to measure height
+\newenvironment{@acolumn}[1]{%
+    \stepcounter{acolumn}%
+    \begin{lrbox}{\@tempboxa}%
+    \begin{minipage}{#1}%
+}{%
+    \end{minipage}
+    \end{lrbox}
+    \@tempdimc=\dimexpr\ht\@tempboxa+\dp\@tempboxa\relax
+    % Save height of this column:
+    \expandafter\xdef\csname acolumn@height@\roman{acolumn}\endcsname{\the\@tempdimc}%
+    % Save maximum height
+    \ifdim\@tempdimc>\acolumnmaxheight
+        \global\acolumnmaxheight=\@tempdimc
+    \fi
+}
+
+% `column` wrapper which sets the height beforehand
+\newenvironment{@@acolumn}[1]{%
+    \stepcounter{acolumn}%
+    % The \autoheight macro contains a \vspace macro with the maximum height minus the natural column height
+    \edef\autoheight{\noexpand\vspace*{\dimexpr\acolumnmaxheight-\csname acolumn@height@\roman{acolumn}\endcsname\relax}}%
+    % Call original `column`:
+    \orig@column{#1}%
+}{%
+    \endorig@column
+}
+
+% Save orignal `column` environment away
+\let\orig@column\column
+\let\endorig@column\endcolumn
+
+% `columns` variant with automatic height adjustment
+\NewEnviron{acolumns}[1][]{%
+    % Init vars:
+    \setcounter{acolumn}{0}%
+    \setlength{\acolumnmaxheight}{0pt}%
+    \def\autoheight{\vspace*{0pt}}%
+    % Set `column` environment to special measuring environment
+    \let\column\@acolumn%
+    \let\endcolumn\end@acolumn%
+    \BODY% measure heights
+    % Reset counter for second processing round
+    \setcounter{acolumn}{0}%
+    % Set `column` environment to wrapper
+    \let\column\@@acolumn%
+    \let\endcolumn\end@@acolumn%
+    % Finally process columns now for real
+    \vskip-1cm%
+    \begin{columns}[#1]%
+        \BODY%
+    \end{columns}%
+}
+\makeatother
