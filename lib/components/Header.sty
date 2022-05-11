@@ -11,10 +11,10 @@
 \pgfkeys{
 	/newsletter/header/.is family,
 	/newsletter/header/.cd,
-	title/.store in=\headerTitle,
-	author/.store in=\headerAuthor,
-	tagline/.store in=\headerTagline,
-	tagline/.default={},
+	title/.store in=\newsletter@header@title,
+	author/.store in=\newsletter@header@author,
+	tagline/.store in=\newsletter@header@tagline,
+	tagline/.initial, tagline,
 }
 
 \newcommand{\Header}[1][]{%
@@ -36,21 +36,23 @@
 					\color{white}\bfseries\raggedright%
 					{%
 						\huge%
-						\underline{\headerTitle}\newline%
+						\underline{\newsletter@header@title}\newline%
 						\vskip-.5\baselineskip%
 					}%
 					{%
 						\large%
-						\headerAuthor~$\cdot$~\insertdate~$\cdot$~Issue \theissue%
+						\newsletter@header@author~$\cdot$~\insertdate~$\cdot$~Issue \theissue%
 					}%
 					{%
 						\small%
 						\linespread{1}%
-						\if\relax\detokenize{\headerTagline}\relax%
-						\else%
+						\def\UnsetValueType{\pgfkeysnovalue}%
+						\ifdefequal{\newsletter@header@tagline}{\UnsetValueType}{%
+							\relax%
+						}{%
 							\null\newline%
-							\MakeUppercase{\headerTagline}%
-						\fi%
+							\MakeUppercase{\newsletter@header@tagline}%
+						}%
 					}%
 				}%
 			};
