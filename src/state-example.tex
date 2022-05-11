@@ -1,0 +1,52 @@
+\tikzset{
+	execute style/.style = {#1},
+	execute macro/.style = {execute style/.expand once=#1},
+	/welcomeMessage/pgf/.cd,
+	image/.store in = \image,
+	image width/.store in = \imagewidth,
+	content/.store in = \content,
+	content width/.store in = \contentwidth,
+}
+
+
+
+\newcommand{\welcomeMessage}[1]{#1}%
+\newcommand{\setWelcomeMessage}[1]{%
+	\tikzset{/welcomeMessage/pgf/.cd,#1}%
+	\renewcommand{\welcomeMessage}{%
+		\parbox{\contentwidth}{%
+			\begin{wrapfigure}{l}{\imagewidth}%
+				\Rounded{%
+					\includegraphics[width=\imagewidth]{\image}%
+				}%
+			\end{wrapfigure}
+			\raggedright\itshape
+			\content
+		}
+	}
+}
+
+
+
+\setWelcomeMessage{%
+	image=img/katherine_kent.jpg,
+	image width=0.125\textwidth,
+	content width=0.375\textwidth,
+	content={%
+		\lipsum[1] \newline
+		
+		\lipsum[2] \newline
+		
+		Cheers,
+		
+		Elliott
+	}%
+}
+
+
+
+\begin{page}
+	
+	\welcomeMessage
+	
+\end{page}
