@@ -1,0 +1,20 @@
+\newcommand{\footlineText}{%
+	\color{white}%
+	\raisebox{-.66\baselineskip}{\resizebox{!}{3cm}{\Logo}}%
+	\today%
+	\hfill%
+	\inserttitle: Issue \theissue%
+	\hfill%
+	\href{mailto:elliott.phillips.dev@gmail.com?subject=Newsletter Contribution Request}{Contribute here!}%
+}
+
+\setbeamertemplate{footline}{%
+	\begin{tikzpicture}[overlay]%
+		\node[anchor=south] at ([yshift=\nlmargin-7.5mm]current page.south) {%
+			\begin{tikzpicture}%
+				\fill[main-bg, rounded corners=1cm] (0, 0) rectangle (\paperwidth-2\nlmargin, 3cm);%
+				\node[xshift=.5\nlmargin] at (0.45\paperwidth, -2.5mm) {\parbox{0.9\paperwidth}{\footlineText}};%
+			\end{tikzpicture}%
+		};%
+	\end{tikzpicture}%
+}
