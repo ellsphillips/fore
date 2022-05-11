@@ -1,0 +1,57 @@
+\ProvidesPackage{beamerthemenewsletter}
+
+
+
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{marvosym}
+\usepackage{ragged2e}
+\usepackage[font=scriptsize, justification=justified]{caption}
+\usepackage{lipsum}
+\usepackage{hyperref}
+\usepackage{wrapfig}
+\usepackage{varwidth}
+
+\usepackage{calc}
+\usepackage{graphicx}
+\usepackage[export]{adjustbox}
+\usepackage{array}
+\usepackage{epstopdf}
+
+\usepackage{tikz}
+\usetikzlibrary{
+	calc,
+	positioning,
+	shadows.blur,
+	shadows,
+	fadings,
+	patterns,
+	decorations.pathreplacing,
+	shapes.arrows,
+	decorations.pathmorphing,
+	decorations.markings,
+	calendar,
+	shapes,
+	backgrounds,
+	fit
+}
+
+\pgfdeclarelayer{background}
+\pgfdeclarelayer{middle}
+\pgfsetlayers{background,middle,main}
+
+
+
+\tikzset{%
+	hyperlink node/.style={%
+		alias = sourcenode,
+		append after command = {%
+			let \p1 = (sourcenode.north west),
+			\p2=(sourcenode.south east),
+			\n1={\x2-\x1},
+			\n2={\y1-\y2} in node [inner sep=0pt, outer sep=0pt,anchor=north west,at=(\p1)] {%
+				\hyperlink{#1}{\XeTeXLinkBox{\phantom{\rule{\n1}{\n2}}}}%
+			}%
+		}%
+	},
+}%

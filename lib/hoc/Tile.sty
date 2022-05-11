@@ -1,0 +1,32 @@
+\pgfkeys{
+	execute style/.style={#1},
+	execute macro/.style={execute style/.expand once=#1},
+	/nltile/pgf/.cd,
+	bg/.store in=\tileBg,
+	fg/.store in=\tileFg,
+	width/.store in=\tileWidth,
+	width/.default={20cm},
+	padding/.store in=\tilePadding,
+	padding/.initial={1cm},
+}
+
+
+
+\NewEnviron{tile}[1][]{%
+	\tikzset{/nltile/pgf/.cd,#1}%
+	\begin{tikzpicture}
+		\node[anchor = north west] (nltile-content) {%
+			\color{\tileFg}
+			\parbox{\tileWidth}{%
+				\BODY
+			}%
+		};%
+	%
+		\begin{pgfonlayer}{middle}%
+			\fill[\tileBg, rounded corners = 1cm]%
+			([shift = {(-1cm,1cm)}]nltile-content.north west)%
+			rectangle%
+			([shift = {(1cm,-1cm)}]nltile-content.south east);%
+		\end{pgfonlayer}%
+	\end{tikzpicture}
+}
