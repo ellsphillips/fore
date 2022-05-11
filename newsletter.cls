@@ -68,12 +68,12 @@
 \RequirePackage{%
 	lib/hoc/Rounded,
 	lib/hoc/Tile,
+	lib/hoc/Columns,
 }
 
 \RequirePackage{%
 	lib/components/Header,
 	lib/components/Footer,
-	lib/components/Columns,
 	lib/components/Logo,
 	lib/components/Spacer,
 	lib/components/Message,
