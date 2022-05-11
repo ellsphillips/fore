@@ -1,0 +1,33 @@
+\tikzstyle{inner box} = [box, clip]
+\tikzstyle{outer box} = [box, fill=none, draw=none]
+\tikzstyle{box} = [inner sep=-5mm, outer sep=0mm, rounded corners=1cm]
+
+\newif\ifRoundedShadow
+
+\pgfkeys{
+	/newsletter/rounded/.is family,
+	/newsletter/rounded/.cd,
+	shadow/.is if=RoundedShadow,
+	shadow/.default=false,
+}
+
+\newcommand{\Rounded}[2][]{%
+	\tikzset{/newsletter/rounded/.cd,#1}%
+	\noindent\tikz[remember picture]{%
+		\ifRoundedShadow%
+			\node[%
+				inner box,
+				blur shadow={%
+					shadow blur steps=30,
+					shadow xshift=0ex,
+					shadow yshift=0ex,
+					shadow blur radius=2ex,
+					shadow opacity=10,
+				}%
+			] (inlineimg) {#2};%
+		\else%
+			\node[inner box] (inlineimg) {#2};%
+		\fi%
+		\node[outer box,fit=(inlineimg),line width=1mm] (inlineimg-wrapper) {};%
+	}%
+}
