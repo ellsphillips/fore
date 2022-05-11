@@ -1,0 +1,56 @@
+\begin{page}%
+	\Header[%
+		title=\inserttitle,
+		author=\insertauthor,
+		tagline={This newsletter issue can be shared across civil service},
+	]
+	
+	\Spacer[height=\nlmargin]
+	
+	\begin{tile}[%
+		bg=main-bg,
+		fg=white,
+		width=.25\nlwidth,
+	]%
+		\lipsum[1]
+	\end{tile}
+
+	\Spacer[height=\nlmargin]
+
+	\newlength{\ColumnsGap}
+	\setlength{\ColumnsGap}{\nlmargin}
+
+	\begin{acolumns}[T,totalwidth=\nlwidth]%
+		\begin{column}{0.3\nlwidth-.5\ColumnsGap}%
+			\setbeamercolor{nlcolumn}{fg=black,bg=red!10}%
+			\begin{beamercolorbox}[sep=0pt]{nlcolumn}%
+				\begin{tile}[%
+					bg=main-bg,
+					fg=white,
+					width=.3\nlwidth-.5\ColumnsGap-2cm,
+				]%
+					\lipsum[1]%
+				\end{tile}%
+				\autoheight%
+			\end{beamercolorbox}%
+		\end{column}%
+		\begin{column}{0.7\nlwidth-.5\ColumnsGap}%
+			\setbeamercolor{nlcolumn}{fg=black,bg=red!10}%
+			\begin{beamercolorbox}[sep=0pt]{nlcolumn}%
+				\begin{tile}[%
+					bg=main-bg!10,
+					fg=main-fg,
+					width=.7\nlwidth-.5\ColumnsGap-2cm,
+				]%
+					\lipsum[1]%
+				\end{tile}%
+				
+				\Rounded[shadow=true]{%
+					\includegraphics[width=.2\paperwidth]{img/katherine_kent.jpg}%
+				}
+			
+				\autoheight%
+			\end{beamercolorbox}%
+		\end{column}%
+	\end{acolumns}%
+\end{page}
