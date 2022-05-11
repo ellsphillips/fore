@@ -1,0 +1,84 @@
+\definecolor{logoblue}{RGB}{25, 58, 87}
+
+\newcounter{issue}
+\newcommand{\issue}[1]{\setcounter{issue}{#1}}
+
+
+
+\newlength{\headerlogodim}
+\setlength{\headerlogodim}{0.1\paperheight}
+
+\pgfkeys{
+	/newsletter/header/.is family,
+	/newsletter/header/.cd,
+	title/.store in=\headerTitle,
+	author/.store in=\headerAuthor,
+	tagline/.store in=\headerTagline,
+	tagline/.default={},
+}
+
+\newcommand{\Header}[1][]{%
+	\tikzset{/newsletter/header/.cd,#1}%
+	\Rounded{%
+		\begin{tikzpicture}%
+			\node[anchor = north west] (header-integrated-logo) {%
+				\includegraphics[height = \headerlogodim]{img/ONS-red-logo.pdf}
+			};
+		%
+			\fill[logoblue]%
+				(header-integrated-logo.north east)%
+				rectangle%
+				([xshift=\dimexpr\linewidth-.5cm-\headerlogodim+\nlmargin\relax]header-integrated-logo.south east);
+		%
+			\node[anchor=west] (header-meta) at (header-integrated-logo.east) {%
+				\parbox{.8\linewidth}{%
+%					\linespread{2}%
+					\color{white}\bfseries\raggedright%
+					{%
+						\huge%
+						\underline{\headerTitle}\newline%
+						\vskip-.5\baselineskip%
+					}%
+					{%
+						\large%
+						\headerAuthor~$\cdot$~\insertdate~$\cdot$~Issue \theissue%
+					}%
+					{%
+						\small%
+						\linespread{1}%
+						\if\relax\detokenize{\headerTagline}\relax%
+						\else%
+							\null\newline%
+							\MakeUppercase{\headerTagline}%
+						\fi%
+					}%
+				}%
+			};
+		%
+			\node[anchor=east] (header-logo) at ([xshift=\dimexpr\nlwidth-2\nlmargin\relax]header-integrated-logo) {%
+				\Logo%
+			};
+		\end{tikzpicture}%
+	}%
+}
+
+
+
+%\setbeamertemplate{headline}{%
+%	\ifnum\value{framenumber}=1%
+%	\leavevmode%
+%	\begin{tikzpicture}
+%		\fill[white] (current page.north west) rectangle ([shift={(0, -0.125\paperheight)}]current page.north east);
+%	%
+%		\node[anchor = north] at ([shift={(0.004\paperwidth, -15mm)}]current page.north) {%
+%			\Rounded{%
+%				\resizebox{\paperwidth-2\nlmargin}{!}{%
+%					\Header%
+%				}%
+%			}%
+%		};
+%	\end{tikzpicture}	
+%	\else%
+%	\relax%
+%	\fi%
+%}
