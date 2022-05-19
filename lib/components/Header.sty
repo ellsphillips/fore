@@ -20,7 +20,7 @@
 \newcommand{\Header}[1][]{%
 	\tikzset{/newsletter/header/.cd,#1}%
 	\Rounded{%
-		\begin{tikzpicture}%
+		\begin{tikzpicture}[inner sep=-1cm]%
 			\node[anchor = north west] (header-integrated-logo) {%
 				\includegraphics[height = \headerlogodim]{img/ONS-red-logo.pdf}
 			};
@@ -32,7 +32,6 @@
 		%
 			\node[anchor=west] (header-meta) at (header-integrated-logo.east) {%
 				\parbox{.8\linewidth}{%
-%					\linespread{2}%
 					\color{white}\bfseries\raggedright%
 					{%
 						\huge%
