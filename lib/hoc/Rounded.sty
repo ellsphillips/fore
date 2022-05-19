@@ -1,20 +1,20 @@
 \tikzstyle{inner box} = [box, clip]
 \tikzstyle{outer box} = [box, fill=none, draw=none]
-\tikzstyle{box} = [inner sep=-5mm, outer sep=0mm, rounded corners=1cm]
+\tikzstyle{box} = [inner sep=0mm, outer sep=0mm, rounded corners=1cm]
 
-\newif\ifRoundedShadow
+\newif\if@newsletter@rounded@shadow
 
 \pgfkeys{
 	/newsletter/rounded/.is family,
 	/newsletter/rounded/.cd,
-	shadow/.is if=RoundedShadow,
+	shadow/.is if=@newsletter@rounded@shadow,
 	shadow/.default=false,
 }
 
 \newcommand{\Rounded}[2][]{%
 	\tikzset{/newsletter/rounded/.cd,#1}%
 	\noindent\tikz[remember picture]{%
-		\ifRoundedShadow%
+		\if@newsletter@rounded@shadow%
 			\node[%
 				inner box,
 				blur shadow={%
