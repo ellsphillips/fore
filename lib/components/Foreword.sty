@@ -1,0 +1,23 @@
+\pgfkeys{
+	/newsletter/foreword/.cd,
+	image/.store in = \newsletter@foreword@image,
+	image width/.store in = \newsletter@foreword@imageWidth,
+	image width/.default = 0.15\nlwidth, image width,
+	content width/.store in = \newsletter@foreword@contentWidth,
+	content width/.default = 0.4\nlwidth, content width,
+}
+
+
+
+\NewEnviron{foreword}[1][]{%
+	\tikzset{/newsletter/foreword/.cd,#1}%
+	\parbox{\newsletter@foreword@contentWidth}{%
+		\begin{wrapfigure}{l}{\newsletter@foreword@imageWidth+1cm}%
+			\Rounded[shadow=true]{%
+				\includegraphics[width=\newsletter@foreword@imageWidth]{\newsletter@foreword@image}%
+			}%
+		\end{wrapfigure}%
+		\raggedright\itshape%
+		\BODY%
+	}%
+}
