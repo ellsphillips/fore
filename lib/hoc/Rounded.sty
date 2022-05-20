@@ -4,30 +4,40 @@
 
 \newif\if@newsletter@rounded@shadow
 
+\tikzset{%
+	newsletter/rounded/shadow/.style={%
+		blur shadow={%
+			shadow blur steps=30,
+			shadow xshift=0ex,
+			shadow yshift=0ex,
+			shadow blur radius=2ex,
+			shadow opacity=10,
+		}%
+	}%
+}
+
+% shadow/.is if=@newsletter@rounded@shadow,
+
 \pgfkeys{
 	/newsletter/rounded/.is family,
 	/newsletter/rounded/.cd,
-	shadow/.is if=@newsletter@rounded@shadow,
-	shadow/.default=false,
+	shadow/.code={%
+		\tikzset{newsletter/rounded/shadow}%
+	},
+	shadow/.default={},
+	shadow/.initial={},
 }
 
 \newcommand{\Rounded}[2][]{%
 	\tikzset{/newsletter/rounded/.cd,#1}%
 	\noindent\tikz[remember picture]{%
-		\if@newsletter@rounded@shadow%
-			\node[%
-				inner box,
-				blur shadow={%
-					shadow blur steps=30,
-					shadow xshift=0ex,
-					shadow yshift=0ex,
-					shadow blur radius=2ex,
-					shadow opacity=10,
-				}%
-			] (inlineimg) {#2};%
-		\else%
-			\node[inner box] (inlineimg) {#2};%
-		\fi%
+		\node[%
+			inner box,
+%			\if@newsletter@rounded@shadow%
+				newsletter/rounded/shadow%
+%			\fi%
+		] (inlineimg) {#2};%
+	%
 		\node[outer box,fit=(inlineimg),line width=1mm] (inlineimg-wrapper) {};%
 	}%
-}
+}%
