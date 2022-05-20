@@ -1,9 +1,15 @@
 \makeatletter
 
+\pgfkeys{
+	/newsletter/AutoColumns/.cd,
+	total width/.store in = \newsletter@AutoColumns@width,
+	total width/.default = 1, total width,
+}
+
+
+
 \newcounter{autocolumn} % Track current column index
 \newlength{\autocolumnmaxheight} % Maximum column height
-
-
 
 % `column` replacement to measure height
 \newenvironment{@autocolumn}[1]{%
@@ -39,6 +45,7 @@
 
 % `columns` variant with automatic height adjustment
 \NewEnviron{AutoColumns}[1][]{%
+	\tikzset{/newsletter/AutoColumns/.cd,#1}%
     % Init vars:
     \setcounter{autocolumn}{0}%
     \setlength{\autocolumnmaxheight}{0pt}%
@@ -54,7 +61,10 @@
     \let\endcolumn\end@@autocolumn%
     % Finally process columns now for real
     \vskip-1cm%
-    \begin{columns}[#1]%
+    \begin{columns}[%
+    	T,
+    	totalwidth=\newsletter@AutoColumns@width\nlwidth,
+    ]%
         \BODY%
     \end{columns}%
 }
@@ -71,7 +81,7 @@
 \NewEnviron{Column}[1][]{%
 	\tikzset{/newsletter/column/.cd,#1}%
 	\begin{column}{\newsletter@column@width\nlwidth-.5\nlmargin}%
-		\setbeamercolor{nlcolumn}{fg=black,bg=red!10}%
+		\setbeamercolor{nlcolumn}{fg=black,bg=orange!20}%
 		\begin{beamercolorbox}[sep=0pt]{nlcolumn}%
 			\BODY%
 			\autoheight%
