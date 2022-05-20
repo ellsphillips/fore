@@ -76,6 +76,7 @@
 	lib/components/Footer,
 	lib/components/Logo,
 	lib/components/Spacer,
+	lib/components/Title,
 	lib/components/Foreword,
 	lib/components/Updates,
 }
