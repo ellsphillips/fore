@@ -1,0 +1,18 @@
+\pgfkeys{
+	/newsletter/Title/.cd,
+	alignment/.store in = \newsletter@Title@alignment,
+	alignment/.default = \raggedright, alignment,
+}
+
+
+
+\newcommand{\Title}[2][]{%
+	\tikzset{/newsletter/Title/.cd,#1}%
+	\raisebox{1.5\ht\strutbox}{\hypertarget{intro}{}}%
+	\parbox{\linewidth}{%
+		\color{main-bg}\bfseries\scshape\Large%
+		\newsletter@Title@alignment%
+		\MakeUppercase{#2}%
+	}%
+	\vskip\nlmargin%
+}
