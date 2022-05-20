@@ -21,46 +21,31 @@
 		Elliott
 	\end{foreword}
 
-%	\Rounded{%
-%		\includegraphics[width=0.1\nlwidth]{img/ep.jpg}%
-%	}%
-
 	\Spacer[height=\nlmargin]
 
-	\newlength{\ColumnsGap}
-	\setlength{\ColumnsGap}{\nlmargin}
-
-	\begin{acolumns}[T,totalwidth=\nlwidth]%
-		\begin{column}{0.3\nlwidth-.5\ColumnsGap}%
-			\setbeamercolor{nlcolumn}{fg=black,bg=red!10}%
-			\begin{beamercolorbox}[sep=0pt]{nlcolumn}%
-				\begin{tile}[%
-					bg=main-bg,
-					fg=white,
-					width=.3\nlwidth-.5\ColumnsGap-2cm,
-				]%
-					\lipsum[1]%
-				\end{tile}%
-				\autoheight%
-			\end{beamercolorbox}%
-		\end{column}%
-		\begin{column}{0.7\nlwidth-.5\ColumnsGap}%
-			\setbeamercolor{nlcolumn}{fg=black,bg=red!10}%
-			\begin{beamercolorbox}[sep=0pt]{nlcolumn}%
-				\begin{tile}[%
-					bg=main-bg!10,
-					fg=main-fg,
-					width=.7\nlwidth-.5\ColumnsGap-2cm,
-				]%
-					\lipsum[1]%
-				\end{tile}%
-				
-				\Rounded[shadow=true]{%
-					\includegraphics[width=.2\paperwidth]{img/ep.jpg}%
-				}
+	\begin{AutoColumns}[T,totalwidth=\nlwidth]%
+		\begin{Column}[width=0.3]%
+			\begin{tile}[%
+				bg=main-bg,
+				fg=white,
+				width=.3\nlwidth-.5\nlmargin-2cm,
+			]%
+				\lipsum[1]%
+			\end{tile}%
+		\end{Column}%
+	%
+		\begin{Column}[width=0.7]%
+			\begin{tile}[%
+				bg=main-bg!10,
+				fg=main-fg,
+				width=.7\nlwidth-.5\nlmargin-2cm,
+			]%
+				\lipsum[1]%
+			\end{tile}%
 			
-				\autoheight%
-			\end{beamercolorbox}%
-		\end{column}%
-	\end{acolumns}%
+			\Rounded[shadow]{%
+				\includegraphics[width=.2\paperwidth]{img/ep.jpg}%
+			}
+		\end{Column}%
+	\end{AutoColumns}%
 \end{page}
