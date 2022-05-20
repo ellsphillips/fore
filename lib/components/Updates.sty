@@ -1,0 +1,24 @@
+\pgfkeys{
+	/newsletter/updates/.cd,
+	spacing/.store in = \newsletter@updates@spacing,
+	spacing/.default = 1.5ex, spacing,
+}
+
+
+
+\NewEnviron{Updates}[1][]{%
+	\tikzset{/newsletter/updates/.cd,#1}%
+	\setbeamertemplate{itemize items}{\null}%
+	\begin{itemize}%
+		\setlength\itemindent{-2em}%
+		\setlength\itemsep{\newsletter@updates@spacing}%
+		\setlength\leftmargini{0.5cm}%
+		\setlength\leftmarginii{2cm}%
+		\justifying%
+		\BODY%
+	\end{itemize}%
+}
+
+\newcommand{\Update}[2][$\bullet$]{%
+	\item {\bfseries\color{main-bg}#1:\;}{#2}%
+}
