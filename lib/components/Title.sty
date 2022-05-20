@@ -9,10 +9,10 @@
 \newcommand{\Title}[2][]{%
 	\tikzset{/newsletter/Title/.cd,#1}%
 	\raisebox{1.5\ht\strutbox}{\hypertarget{intro}{}}%
-	{%
+	\parbox{\linewidth}{%
 		\color{main-bg}\bfseries\scshape\Large%
 		\newsletter@Title@alignment%
 		\MakeUppercase{#2}%
 	}%
-	\vskip1cm%
+	\vskip\nlmargin%
 }
