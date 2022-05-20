@@ -77,4 +77,5 @@
 	lib/components/Logo,
 	lib/components/Spacer,
 	lib/components/Foreword,
+	lib/components/Updates,
 }
