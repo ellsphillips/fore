@@ -6,61 +6,68 @@
 	]
 	
 	\Spacer[height=\nlmargin]
+	
+	\begin{AutoColumns}%
+		\begin{Column}[width=0.4]%
+			\begin{foreword}[%
+				image=img/ep.jpg,
+			]%
+				Hi All, \newline
+				
+				Thanks for your interest in this dynamic newsletter, built entirely with \LaTeX{}! \newline
+				
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus accumsan imperdiet imperdiet. Nam ut nibh ultricies, scelerisque dolor vitae, suscipit massa. Quisque commodo lacinia mi, non elementum mi condimentum nec. Duis vel leo felis. Aliquam sed euismod tortor, vel faucibus diam. In viverra scelerisque nisi, at porta sem. Quisque pulvinar orci et tellus aliquam, vitae scelerisque arcu ullamcorper. Donec lobortis augue ante, accumsan lacinia ipsum ullamcorper eget. Pellentesque aliquam sollicitudin sapien. \newline
+				
+				Cheers,
+				
+				Elliott
+			\end{foreword}%
+		\end{Column}%
+	%
+		\begin{Column}[width=0.6]%
+			\begin{Updates}
+				\Update[Something important]{%
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pellentesque, arcu sit amet dignissim iaculis, dui ante interdum magna, id lobortis risus justo eget dui. Aenean eget velit leo. Praesent dignissim massa vitae magna accumsan, vel pellentesque urna porttitor. Vivamus dictum ut tellus at finibus. Sed eget nibh turpis. Ut sodales lectus sed massa bibendum cursus a in risus. Duis tortor odio, elementum vitae nibh at, fringilla sagittis nisi. Duis facilisis turpis eget libero posuere faucibus. Proin tincidunt et odio in laoreet. Quisque gravida sit amet erat non eleifend. Vestibulum porta ultricies sollicitudin. Duis convallis interdum lectus, et commodo ipsum euismod a. Praesent ullamcorper in lectus a dignissim. Vivamus pretium, ante eu mollis maximus, nibh dui volutpat tellus, id luctus velit mi in tortor.
+				}
+			%
+				\Update[A thing worth noting]{%
+					In quis fermentum erat, a blandit diam. Aliquam venenatis dolor quis odio tristique, vel ullamcorper velit ullamcorper. In malesuada varius justo, ac maximus neque accumsan at. Nam elementum vitae mi quis pulvinar. Nam mattis sem turpis, non vestibulum nulla aliquam a. Donec consectetur tincidunt iaculis. Suspendisse potenti. Vivamus ut fermentum purus. Nulla congue est eget magna accumsan, in tincidunt risus blandit. Quisque finibus nisl iaculis nisi elementum, quis tincidunt magna placerat. Morbi sodales, leo nec semper tincidunt, turpis odio molestie diam, id ullamcorper sem risus semper orci. Suspendisse potenti. Cras augue ipsum, pulvinar in congue ullamcorper, venenatis a augue. Maecenas scelerisque, justo sed fringilla porttitor, sem erat elementum justo, in pharetra nunc metus id libero. Mauris semper lacus metus, nec dapibus est scelerisque nec.
+				}
+			%
+				\Update[Upcoming event]{%
+					In quis fermentum erat, a blandit diam. Aliquam venenatis dolor quis odio tristique, vel ullamcorper velit ullamcorper. In malesuada varius justo, ac maximus neque accumsan at. Nam elementum vitae mi quis pulvinar. Nam mattis sem turpis, non vestibulum nulla aliquam a. Donec consectetur tincidunt iaculis. Suspendisse potenti. Vivamus ut fermentum purus. Nulla congue est eget magna accumsan, in tincidunt risus blandit. Quisque finibus nisl iaculis nisi elementum, quis tincidunt magna placerat. Morbi sodales, leo nec semper tincidunt, turpis odio molestie diam, id ullamcorper sem risus semper orci. Suspendisse potenti. Cras augue ipsum, pulvinar in congue ullamcorper, venenatis a augue. Maecenas scelerisque, justo sed fringilla porttitor, sem erat elementum justo, in pharetra nunc metus id libero. Mauris semper lacus metus, nec dapibus est scelerisque nec.
+				}
+			\end{Updates}
+		\end{Column}
+	\end{AutoColumns}
 
-	\begin{foreword}[%
-		image=img/ep.jpg,
-	]%
-		Hi All, \newline
-		
-		Thanks for your interest in this dynamic newsletter, built entirely with \LaTeX{}! \newline
-		
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus accumsan imperdiet imperdiet. Nam ut nibh ultricies, scelerisque dolor vitae, suscipit massa. Quisque commodo lacinia mi, non elementum mi condimentum nec. Duis vel leo felis. Aliquam sed euismod tortor, vel faucibus diam. In viverra scelerisque nisi, at porta sem. Quisque pulvinar orci et tellus aliquam, vitae scelerisque arcu ullamcorper. Donec lobortis augue ante, accumsan lacinia ipsum ullamcorper eget. Pellentesque aliquam sollicitudin sapien. \newline
-		
-		Cheers,
-		
-		Elliott
-	\end{foreword}
-
-%	\Rounded{%
-%		\includegraphics[width=0.1\nlwidth]{img/ep.jpg}%
-%	}%
+	
 
 	\Spacer[height=\nlmargin]
 
-	\newlength{\ColumnsGap}
-	\setlength{\ColumnsGap}{\nlmargin}
-
-	\begin{acolumns}[T,totalwidth=\nlwidth]%
-		\begin{column}{0.3\nlwidth-.5\ColumnsGap}%
-			\setbeamercolor{nlcolumn}{fg=black,bg=red!10}%
-			\begin{beamercolorbox}[sep=0pt]{nlcolumn}%
-				\begin{tile}[%
-					bg=main-bg,
-					fg=white,
-					width=.3\nlwidth-.5\ColumnsGap-2cm,
-				]%
-					\lipsum[1]%
-				\end{tile}%
-				\autoheight%
-			\end{beamercolorbox}%
-		\end{column}%
-		\begin{column}{0.7\nlwidth-.5\ColumnsGap}%
-			\setbeamercolor{nlcolumn}{fg=black,bg=red!10}%
-			\begin{beamercolorbox}[sep=0pt]{nlcolumn}%
-				\begin{tile}[%
-					bg=main-bg!10,
-					fg=main-fg,
-					width=.7\nlwidth-.5\ColumnsGap-2cm,
-				]%
-					\lipsum[1]%
-				\end{tile}%
-				
-				\Rounded[shadow=true]{%
-					\includegraphics[width=.2\paperwidth]{img/ep.jpg}%
-				}
+	\begin{AutoColumns}%
+		\begin{Column}[width=0.3]%
+			\begin{tile}[%
+				bg=main-bg,
+				fg=white,
+				width=.3\nlwidth-.5\nlmargin-2cm,
+			]%
+				\lipsum[1]%
+			\end{tile}%
+		\end{Column}%
+	%
+		\begin{Column}[width=0.7]%
+			\begin{tile}[%
+				bg=main-bg!10,
+				fg=main-fg,
+				width=.7\nlwidth-.5\nlmargin-2cm,
+			]%
+				\lipsum[1]%
+			\end{tile}%
 			
-				\autoheight%
-			\end{beamercolorbox}%
-		\end{column}%
-	\end{acolumns}%
+			\Rounded{%
+				\includegraphics[width=.2\paperwidth]{img/ep.jpg}%
+			}
+		\end{Column}%
+	\end{AutoColumns}%
 \end{page}

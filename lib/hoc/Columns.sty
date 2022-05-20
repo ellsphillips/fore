@@ -1,13 +1,19 @@
 \makeatletter
 
-\newcounter{acolumn} % Track current column index
-\newlength{\acolumnmaxheight} % Maximum column height
+\pgfkeys{
+	/newsletter/AutoColumns/.cd,
+	total width/.store in = \newsletter@AutoColumns@width,
+	total width/.default = 1, total width,
+}
 
 
+
+\newcounter{autocolumn} % Track current column index
+\newlength{\autocolumnmaxheight} % Maximum column height
 
 % `column` replacement to measure height
-\newenvironment{@acolumn}[1]{%
-    \stepcounter{acolumn}%
+\newenvironment{@autocolumn}[1]{%
+    \stepcounter{autocolumn}%
     \begin{lrbox}{\@tempboxa}%
     \begin{minipage}{#1}%
 }{%
@@ -15,18 +21,18 @@
     \end{lrbox}
     \@tempdimc=\dimexpr\ht\@tempboxa+\dp\@tempboxa\relax
     % Save height of this column:
-    \expandafter\xdef\csname acolumn@height@\roman{acolumn}\endcsname{\the\@tempdimc}%
+    \expandafter\xdef\csname autocolumn@height@\roman{autocolumn}\endcsname{\the\@tempdimc}%
     % Save maximum height
-    \ifdim\@tempdimc>\acolumnmaxheight
-        \global\acolumnmaxheight=\@tempdimc
+    \ifdim\@tempdimc>\autocolumnmaxheight
+        \global\autocolumnmaxheight=\@tempdimc
     \fi
 }
 
 % `column` wrapper which sets the height beforehand
-\newenvironment{@@acolumn}[1]{%
-    \stepcounter{acolumn}%
+\newenvironment{@@autocolumn}[1]{%
+    \stepcounter{autocolumn}%
     % The \autoheight macro contains a \vspace macro with the maximum height minus the natural column height
-    \edef\autoheight{\noexpand\vspace*{\dimexpr\acolumnmaxheight-\csname acolumn@height@\roman{acolumn}\endcsname\relax}}%
+    \edef\autoheight{\noexpand\vspace*{\dimexpr\autocolumnmaxheight-\csname autocolumn@height@\roman{autocolumn}\endcsname\relax}}%
     % Call original `column`:
     \orig@column{#1}%
 }{%
@@ -38,24 +44,48 @@
 \let\endorig@column\endcolumn
 
 % `columns` variant with automatic height adjustment
-\NewEnviron{acolumns}[1][]{%
+\NewEnviron{AutoColumns}[1][]{%
+	\tikzset{/newsletter/AutoColumns/.cd,#1}%
     % Init vars:
-    \setcounter{acolumn}{0}%
-    \setlength{\acolumnmaxheight}{0pt}%
+    \setcounter{autocolumn}{0}%
+    \setlength{\autocolumnmaxheight}{0pt}%
     \def\autoheight{\vspace*{0pt}}%
     % Set `column` environment to special measuring environment
-    \let\column\@acolumn%
-    \let\endcolumn\end@acolumn%
+    \let\column\@autocolumn%
+    \let\endcolumn\end@autocolumn%
     \BODY% measure heights
     % Reset counter for second processing round
-    \setcounter{acolumn}{0}%
+    \setcounter{autocolumn}{0}%
     % Set `column` environment to wrapper
-    \let\column\@@acolumn%
-    \let\endcolumn\end@@acolumn%
+    \let\column\@@autocolumn%
+    \let\endcolumn\end@@autocolumn%
     % Finally process columns now for real
     \vskip-1cm%
-    \begin{columns}[#1]%
+    \begin{columns}[%
+    	T,
+    	totalwidth=\newsletter@AutoColumns@width\nlwidth,
+    ]%
         \BODY%
     \end{columns}%
+}
+
+
+
+\pgfkeys{
+	/newsletter/column/.is family,
+	/newsletter/column/.cd,
+	width/.store in=\newsletter@column@width,
+	width/.default={0.5}, width,
+}
+
+\NewEnviron{Column}[1][]{%
+	\tikzset{/newsletter/column/.cd,#1}%
+	\begin{column}{\newsletter@column@width\nlwidth-.5\nlmargin}%
+		\setbeamercolor{nlcolumn}{fg=black,bg=orange!20}%
+		\begin{beamercolorbox}[sep=0pt]{nlcolumn}%
+			\BODY%
+			\autoheight%
+		\end{beamercolorbox}%
+	\end{column}%
 }
 \makeatother
