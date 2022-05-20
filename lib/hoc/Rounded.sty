@@ -16,14 +16,10 @@
 	}%
 }
 
-% shadow/.is if=@newsletter@rounded@shadow,
-
 \pgfkeys{
 	/newsletter/rounded/.is family,
 	/newsletter/rounded/.cd,
-	shadow/.code={%
-		\tikzset{newsletter/rounded/shadow}%
-	},
+	shadow/.is if=@newsletter@rounded@shadow,
 	shadow/.default={},
 	shadow/.initial={},
 }
@@ -33,9 +29,9 @@
 	\noindent\tikz[remember picture]{%
 		\node[%
 			inner box,
-%			\if@newsletter@rounded@shadow%
+			\if@newsletter@rounded@shadow%
 				newsletter/rounded/shadow%
-%			\fi%
+			\fi%
 		] (inlineimg) {#2};%
 	%
 		\node[outer box,fit=(inlineimg),line width=1mm] (inlineimg-wrapper) {};%
