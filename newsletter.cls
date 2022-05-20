@@ -79,4 +79,5 @@
 	lib/components/Title,
 	lib/components/Foreword,
 	lib/components/Updates,
+	lib/components/Profile,
 }
