@@ -1,0 +1,53 @@
+\pgfkeys{
+	/newsletter/Author/.cd,
+	image/.store in=\newsletter@Author@image,
+	image/.default={img/author-placeholder.pdf}, image,
+	name/.store in=\newsletter@Author@name,
+	name/.default=0.15\nlwidth, name,
+	email/.initial,
+	team/.store in=\newsletter@Author@team,
+	team/.default=0.15\nlwidth, team,
+}
+
+
+
+\newcommand{\Author}[1][]{%
+	\tikzset{/newsletter/Author/.cd,#1}%
+	
+	\newif\if@newsletter@Author@email@given
+	\@newsletter@Author@email@giventrue
+	
+	\edef\authoremailcheck{\pgfkeysvalueof{/newsletter/Author/email}} 
+	\edef\compareval{\pgfkeysnovalue}
+	\ifdefequal{\authoremailcheck}{\compareval}{%
+		\@newsletter@Author@email@givenfalse%
+	}{%
+		\edef\newsletter@Author@email{\authoremailcheck}
+		\@newsletter@Author@email@giventrue%
+	}
+	
+	\newcommand{\newsletter@Author@content}{%
+		\begin{tikzpicture}%
+			\node[] (author-img) {%
+				\Rounded{%
+					\includegraphics[height=1.5\nlmargin]{\newsletter@Author@image}%
+				}
+			};%
+		%
+			\node[anchor=west] at ([shift={(0.25\nlmargin,0)}]author-img.east) {%
+				\parbox{0.2\nlwidth}{%
+					\textbf{\newsletter@Author@name}\newline%
+					\textit{\newsletter@Author@team}%
+				}%
+			};%
+		\end{tikzpicture}%
+	}
+
+	\if@newsletter@Author@email@given%
+		\href{mailto:\newsletter@Author@email}{%
+			\newsletter@Author@content%
+		}
+	\else%
+		\newsletter@Author@content%
+	\fi%
+}
