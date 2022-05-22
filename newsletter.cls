@@ -62,12 +62,12 @@
 
 
 \RequirePackage{%
-	lib/util/page,
 	lib/util/colour,
 	lib/util/layout,
 }
 
 \RequirePackage{%
+	lib/hoc/Page,
 	lib/hoc/Rounded,
 	lib/hoc/Tile,
 	lib/hoc/Columns,
