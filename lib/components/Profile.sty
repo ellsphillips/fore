@@ -1,0 +1,40 @@
+\pgfkeys{
+	/newsletter/Profile/.cd,
+	bg/.store in = \newsletter@Profile@bg,
+	bg/.default = main-bg!10, bg,
+	fg/.store in = \newsletter@Profile@fg,
+	fg/.default = black!85, fg,
+	width/.store in = \newsletter@Profile@width,
+	width/.default = 0.5\nlwidth, width,
+	image/.store in = \newsletter@Profile@image,
+	image width/.store in = \newsletter@Profile@imageWidth,
+	image width/.default = 0.15\nlwidth, image width,
+}
+
+
+
+\NewEnviron{Profile}[1][]{%
+	\tikzset{/newsletter/Profile/.cd,#1}%
+	\begin{tikzpicture}%
+		\node[] (content) {%
+			\begin{varwidth}{\newsletter@Profile@width-2cm}%
+				\begin{wrapfigure}{R}{\newsletter@Profile@imageWidth+3cm}%
+					\tikz\fill[\newsletter@Profile@bg, draw = none] (0, 0) rectangle (\newsletter@Profile@imageWidth, 7);%
+				\end{wrapfigure}%
+				\noindent\itshape%
+				\BODY%
+			\end{varwidth}%
+		};%
+	%
+		\begin{pgfonlayer}{middle}%
+			\fill[\newsletter@Profile@bg, rounded corners = 1cm]%
+			([shift = {(-1cm,1cm)}]content.north west)%
+			rectangle%
+			([shift = {(1cm,-1cm)}]content.south east);%
+		\end{pgfonlayer}%
+	%
+		\node[anchor=east] at ([shift={(-.5\nlmargin,-.5\nlmargin)}]content.north east) {%
+			\Rounded{\includegraphics[width=\newsletter@Profile@imageWidth]{\newsletter@Profile@image}}
+		};%
+	\end{tikzpicture}%
+}

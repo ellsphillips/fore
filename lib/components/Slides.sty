@@ -1,0 +1,137 @@
+\pgfkeys{
+	/newsletter/Slides/.cd,
+	first slide/.store in = \newsletter@Slides@first@slide,
+	first slide/.default = example-image, first slide,
+	first author/.store in = \newsletter@Slides@first@author,
+	first author/.default = {}, first author,
+	first title/.store in = \newsletter@Slides@first@title,
+	first title/.default = {}, first title,
+	first link/.store in = \newsletter@Slides@first@link,
+	first link/.default = {}, first link,
+	first description/.store in = \newsletter@Slides@first@description,
+	first description/.default = {}, first description,
+%
+	second slide/.store in = \newsletter@Slides@second@slide,
+	second slide/.default = example-image, second slide,
+	second author/.store in = \newsletter@Slides@second@author,
+	second author/.default = {}, second author,
+	second title/.store in = \newsletter@Slides@second@title,
+	second title/.default = {}, second title,
+	second link/.store in = \newsletter@Slides@second@link,
+	second link/.default = {}, second link,
+	second description/.store in = \newsletter@Slides@second@description,
+	second description/.default = {}, second description,
+%
+	third slide/.store in = \newsletter@Slides@third@slide,
+	third slide/.default = example-image, third slide,
+	third author/.store in = \newsletter@Slides@third@author,
+	third author/.default = {}, third author,
+	third title/.store in = \newsletter@Slides@third@title,
+	third title/.default = {}, third title,
+	third link/.store in = \newsletter@Slides@third@link,
+	third link/.default = {}, third link,
+	third description/.store in = \newsletter@Slides@third@description,
+	third description/.default = {}, third description,
+}
+
+
+
+%\pgfkeys{
+%	/newsletter/Presentation/.cd,
+%	image/.store in = \newsletter@Presentation@image,
+%	author/.store in = \newsletter@Presentation@author,
+%	title/.store in = \newsletter@Presentation@title,
+%	description/.store in = \newsletter@Presentation@description,
+%	link/.store in = \newsletter@Presentation@link,
+%	link/.default = {}, link,
+%	width/.store in = \newsletter@Presentation@width,
+%	height/.store in = \newsletter@Presentation@height,
+%}
+%
+%
+%
+%\newcommand{\Presentation}[3]{%
+%	\tikzset{/newsletter/Presentation/.cd,#1}%
+%	\href{\newsletter@Presentation@link}{%
+%		\Rounded{
+%			\includegraphics[%
+%				clip,%
+%				trim = 0mm 0mm 0mm 0mm,%
+%				width = \newsletter@Presentation@width,% 0.635\textwidth
+%				height = \newsletter@Presentation@height% 0.24\paperheight
+%			]{\newsletter@Presentation@image}%
+%		}
+%	}%
+%}
+
+
+
+\newcommand{\Thumbnail}[3]{%
+	\href{https://www.github.com/ellsphillips/newsletter}{%
+		\Rounded{
+			\includegraphics[%
+				clip,%
+				trim = 0mm 0mm 0mm 0mm,%
+				width = #1,% 0.635\textwidth
+				height = #2% 0.24\paperheight
+			]{#3}%
+		}
+	}%
+}
+
+
+
+\NewEnviron{Slides}[1][]{%
+	\tikzset{/newsletter/Slides/.cd,#1}%
+	
+	\begin{tikzpicture}
+		\node[anchor=north east] {%
+			\begin{tikzpicture}[remember picture]%
+				\node[anchor = west] (slide-1) at (0, 0) {%
+					\Thumbnail{0.7\nlwidth-.5\nlmargin-2cm}{0.394\nlwidth}{\newsletter@Slides@first@slide}%
+				};
+				%
+				\node[anchor = north west] (slide-2) at ([yshift = -\nlmargin]slide-1.south west) {%
+					\Thumbnail{0.35\nlwidth-.5\nlmargin-2cm}{0.197\nlwidth}{\newsletter@Slides@second@slide}%
+				};
+				%
+				\node[anchor = north east] (slide-3) at ([yshift = -\nlmargin]slide-1.south east) {%
+					\Thumbnail{0.35\nlwidth-.5\nlmargin-2cm}{0.197\nlwidth}{\newsletter@Slides@third@slide}%
+				};
+			\end{tikzpicture}%
+		};%
+	%
+		\node[anchor=north west] at ([shift={(\nlmargin,0)}]slide-1.north east) {%
+			\begin{Tile}[%
+				bg=main-bg!15,
+				fg=grey-100,
+				width=.3\nlwidth-18mm,
+			]%
+				\begin{minipage}[c][\dimexpr0.591\nlwidth+5mm\relax][t]{\linewidth}%
+%					\color{grey-100}\bfseries\fontsize{33}{36}\selectfont
+					
+					\textbf{\newsletter@Slides@first@title} \newline
+					\newsletter@Slides@first@author\newline
+					
+					\newsletter@Slides@first@description \newline
+					
+					\textbf{\newsletter@Slides@second@title} \newline
+					\newsletter@Slides@second@author\newline
+					
+					\newsletter@Slides@second@description \newline
+					
+					\textbf{\newsletter@Slides@third@title} \newline
+					\newsletter@Slides@third@author\newline
+					
+					\newsletter@Slides@third@description
+					
+					\vskip2\baselineskip
+					
+					View the full slide packs by clicking the tiles adjacent.%
+				\end{minipage}
+			\end{Tile}%
+		};
+	\end{tikzpicture}
+	
+	\BODY%
+}

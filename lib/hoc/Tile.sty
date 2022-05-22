@@ -1,32 +1,36 @@
 \pgfkeys{
-	execute style/.style={#1},
-	execute macro/.style={execute style/.expand once=#1},
-	/nltile/pgf/.cd,
-	bg/.store in=\tileBg,
-	fg/.store in=\tileFg,
-	width/.store in=\tileWidth,
-	width/.default={20cm},
-	padding/.store in=\tilePadding,
-	padding/.initial={1cm},
+	/newsletter/Tile/.cd,
+	bg/.store in=\newsletter@Tile@bg,
+	bg/.default={main-bg!10}, bg,
+	fg/.store in=\newsletter@Tile@fg,
+	fg/.default={grey-100}, fg,
+	width/.store in=\newsletter@Tile@width,
+	width/.default=\linewidth, width,
+	padding/.store in=\newsletter@Tile@padding,
+	padding/.default={1cm}, padding,
 }
 
 
 
-\NewEnviron{tile}[1][]{%
-	\tikzset{/nltile/pgf/.cd,#1}%
+\NewEnviron{Tile}[1][]{%
+	\tikzset{/newsletter/Tile/.cd,#1}%
 	\begin{tikzpicture}
-		\node[anchor = north west] (nltile-content) {%
-			\color{\tileFg}
-			\parbox{\tileWidth}{%
+		\node[anchor = north west] (content) {%
+			\color{\newsletter@Tile@fg}
+			\parbox{%
+				\newsletter@Tile@width%
+				-\newsletter@Tile@padding%
+				-\newsletter@Tile@padding%
+			}{%
 				\BODY
 			}%
 		};%
 	%
 		\begin{pgfonlayer}{middle}%
-			\fill[\tileBg, rounded corners = 1cm]%
-			([shift = {(-1cm,1cm)}]nltile-content.north west)%
+			\fill[\newsletter@Tile@bg, rounded corners = 1cm]%
+			([shift = {(-\newsletter@Tile@padding,\newsletter@Tile@padding)}]content.north west)%
 			rectangle%
-			([shift = {(1cm,-1cm)}]nltile-content.south east);%
+			([shift = {(\newsletter@Tile@padding,-\newsletter@Tile@padding)}]content.south east);%
 		\end{pgfonlayer}%
 	\end{tikzpicture}
 }
