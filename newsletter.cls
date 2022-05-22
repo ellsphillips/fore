@@ -25,9 +25,11 @@
 \usepackage{hyperref}
 \usepackage{wrapfig}
 \usepackage{varwidth}
+\usepackage{multicol}
 
 \RequirePackage{environ}
 
+\RequirePackage{etoolbox}
 \RequirePackage{calc}
 \usepackage{graphicx}
 \usepackage[export]{adjustbox}
@@ -77,8 +79,10 @@
 	lib/components/Logo,
 	lib/components/Spacer,
 	lib/components/Title,
+	lib/components/Author,
 	lib/components/Foreword,
 	lib/components/Updates,
 	lib/components/Profile,
 	lib/components/Slides,
+	lib/components/Article,
 }
