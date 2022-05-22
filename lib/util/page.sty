@@ -9,6 +9,36 @@
 \newlength{\nlheight}
 \setlength{\nlheight}{\dimexpr(\paperheight - 2\nlmargin)\relax}
 
+
+
+\tikzset{
+	newsletter bounding box/.style={
+		draw,
+		rectangle,
+		minimum width=\paperwidth,
+		minimum height=\paperheight,
+		preaction={fill=pink!10},
+		preaction={
+			pattern={%
+				Lines[%
+					distance=6mm,
+					angle=45,
+					line width=2mm%
+				]%
+			},
+			pattern color=pink!50,
+		},
+		path picture={%
+			\draw[pink!25, thick, fill=white]%
+			([shift={(\nlmargin,-\nlmargin)}]path picture bounding box.north west)%
+			rectangle%
+			([shift={(-\nlmargin,\nlmargin)}]path picture bounding box.south east);%
+		},
+	}
+}
+
+
+
 \NewEnviron{page}{%
 	\begin{frame}%
 		\begin{tikzpicture}[overlay, remember picture]%
@@ -22,12 +52,11 @@
 				\end{minipage}%
 			};%
 		%
-			\draw[pink, thick]%
-			([shift={(\nlmargin,-\nlmargin)}]current page.north west)%
-			rectangle%
-			([shift={(-\nlmargin,\nlmargin)}]current page.south east);
-		%
-			\draw[red, thick] (page-content.north west) rectangle (page-content.south east);
+			\begin{pgfonlayer}{background}%
+				\node[newsletter bounding box] at (current page.center) {};
+			%
+				\draw[red, thick] (page-content.north west) rectangle (page-content.south east);
+			\end{pgfonlayer}%
 		\end{tikzpicture}%
 	\end{frame}%
 }

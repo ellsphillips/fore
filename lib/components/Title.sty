@@ -2,6 +2,8 @@
 	/newsletter/Title/.cd,
 	alignment/.store in = \newsletter@Title@alignment,
 	alignment/.default = \raggedright, alignment,
+	after skip/.store in = \newsletter@Title@afterSkip,
+	after skip/.default = \nlmargin, after skip,
 }
 
 
@@ -14,5 +16,5 @@
 		\newsletter@Title@alignment%
 		\MakeUppercase{#2}%
 	}%
-	\vskip\nlmargin%
+	\vskip\newsletter@Title@afterSkip%
 }
