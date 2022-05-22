@@ -1,0 +1,18 @@
+\pgfkeys{
+	/newsletter/Article/.cd,
+	columns/.store in = \newsletter@Article@columns,
+	columns/.default = 3, columns,
+}
+
+
+
+\NewEnviron{Article}[1][]{%
+	\tikzset{/newsletter/Article/.cd,#1}%
+	\begin{minipage}{\linewidth}%
+		\setlength\columnsep{2em}%
+		\begin{multicols}{\newsletter@Article@columns}%
+			\dimendef\prevdepth=0%
+			\BODY%
+		\end{multicols}%
+	\end{minipage}%
+}
