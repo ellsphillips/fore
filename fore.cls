@@ -1,6 +1,6 @@
 \NeedsTeXFormat{LaTeX2e}
 
-\ProvidesClass{newsletter}[2022/05/11 A newsletter document class for LaTeX]
+\ProvidesClass{fore}[2022/05/11 A newsletter document class for LaTeX]
 
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{beamer}}
 \ProcessOptions \relax
