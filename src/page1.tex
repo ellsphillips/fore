@@ -1,32 +1,59 @@
 \begin{Page}
 	
-	\Title[after skip=-.5\nlmargin]{Elliott Phillips}
+	\Spacer[height=0]
 	
-	\begin{Profile}[%
-		image=img/ep.jpg,
-	]%
-		Lorem ipsum dolor sit amet, proin eget porttitor lacus, a interdum est. Vestibulum eu cursus lacus. Vestibulum vel suscipit lacus. Fusce a lorem sapien. Nam sapien diam, egestas eget dolor in, imperdiet rhoncus nibh. Phasellus ut feugiat massa, in molestie risus. Nunc consequat et ex nec condimentum. Duis id laoreet lectus, ac tristique nulla. Curabitur massa lacus, condimentum eu urna quis, dignissim tincidunt diam. Ut nisi nisi, mollis et lacus vel, suscipit aliquet turpis. Vivamus nec molestie leo. Ut molestie nunc ac turpis bibendum pretium. Cras elementum luctus ligula, id commodo lorem pretium vel. Morbi pretium lectus vel ex sodales, a ultrices velit interdum. Praesent in luctus purus.%
-	\end{Profile}
+	\begin{AutoColumns}%
+		\begin{Column}[width=0.5]%
+			\Title[after skip=-.5\nlmargin]{Elliott Phillips}%
+			
+			\begin{Profile}[%
+				image=img/ep.jpg,
+			]%
+				\lipsum[1]%
+			\end{Profile}
+		\end{Column}%
+	%
+		\begin{Column}[width=0.5]%
+			\Title{Button variants}%
+			
+			\Button[link=https://www.github.com/ellsphillips/fore]
+			
+			\Button[%
+				text={article},
+				link=https://www.github.com/ellsphillips/fore,
+			]
+			
+			\Button[%
+				variant=secondary,
+				text={article},
+				link=https://www.github.com/ellsphillips/fore,
+			]
+		\end{Column}%
+	\end{AutoColumns}%
 
+	
+	
+	\Spacer[height=\nlmargin]
+	
+	
 
-
-	\Title{In case you missed it...}
+	\Title{In case you missed it...}%
 	
 	\Slides[%
 		first slide={example-image-a},
 		first author={Elliott Phillips},
 		first title={A dynamic TeX newsletter},
-		first link=https://www.github.com/ellsphillips/newsletter,
+		first link=https://www.github.com/ellsphillips/fore,
 		first description={A procedural newsletter template for professionals, built entirely in \TeX{}.},
 		second slide={example-image-b},
-		second author={John Smith},
-		second title={Cool presentation},
-		second link=https://www.github.com/ellsphillips/newsletter,
+		second author={Elliott Phillips},
+		second title={Automating data-driven reporting},
+		second link=https://www.github.com/ellsphillips/doctor,
 		second description={A fascinating topic...},
 		third slide={example-image-c},
-		third author={Jane Doe},
-		third title={Epic slideshow},
-		third link=https://www.github.com/ellsphillips/newsletter,
+		third author={Elliott Phillips},
+		third title={ons.dev},
+		third link=https://www.github.com/ellsphillips/ons.dev,
 		third description={An interesting subject...},
 	]
 	

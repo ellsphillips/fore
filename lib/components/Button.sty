@@ -4,10 +4,12 @@
 	variant/primary/.code={%
 		\def\Button@variant@fg{white}%
 		\def\Button@variant@bg{main-fg}%
+		\def\Button@variant@border{none}%
 	},
 	variant/secondary/.code={%
 		\def\Button@variant@fg{main-bg}%
-		\def\Button@variant@bg{main-bg!25}%
+		\def\Button@variant@bg{white}%
+		\def\Button@variant@border{main-bg}%
 	},
 	variant/.unknown/.code=\edef\Button@variant{%
 		I am customized to ``\pgfkeys@was@choice''. Argument: ``#1''%
@@ -31,6 +33,8 @@
 				draw=none,
 				text=\Button@variant@fg,
 				fill=\Button@variant@bg,
+				draw=\Button@variant@border,
+				line width=2mm,
 				rectangle,
 				inner sep=1cm,
 				rounded corners=5mm,

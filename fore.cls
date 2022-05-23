@@ -1,3 +1,7 @@
+%% Start of file `doctor.cls'.
+%% Copyright 2021 Elliott Phillips <ellsphillipsuni@gmail.com>
+%
+
 \NeedsTeXFormat{LaTeX2e}
 
 \ProvidesClass{fore}[2022/05/11 A newsletter document class for LaTeX]
@@ -66,6 +70,7 @@
 	lib/util/layout,
 	lib/util/load,
 	lib/util/props,
+	lib/util/meta,
 }
 
 \RequirePackage{%
@@ -89,3 +94,15 @@
 	lib/components/Article,
 	lib/components/Button,
 }
+
+\RequirePackage{xkeyval}
+
+\newcounter{issue}
+\DeclareOptionX{issue}{\setcounter{issue}{#1}}
+\ExecuteOptionsX{issue=1}
+
+\ProcessOptionsX \relax
+
+% ------------------------------------------------------------------------------
+%
+%% End of file `doctor.cls'.

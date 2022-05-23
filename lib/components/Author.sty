@@ -11,10 +11,12 @@
 
 
 
+\newcommand{\newsletter@Author@content}{}
+
 \newcommand{\Author}[1][]{%
 	\tikzset{/newsletter/Author/.cd,#1}%
 	
-	\newcommand{\newsletter@Author@content}{%
+	\renewcommand{\newsletter@Author@content}{%
 		\begin{tikzpicture}%
 			\node[] (author-img) {%
 				\Rounded{%

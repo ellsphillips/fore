@@ -1,18 +1,20 @@
 \pgfkeys{
 	/newsletter/Title/.cd,
-	alignment/.store in = \newsletter@Title@alignment,
-	alignment/.default = \raggedright, alignment,
-	after skip/.store in = \newsletter@Title@afterSkip,
-	after skip/.default = \nlmargin, after skip,
+	alignment/.store in=\newsletter@Title@alignment,
+	alignment/.default=\raggedright, alignment,
+	after skip/.store in=\newsletter@Title@afterSkip,
+	after skip/.default=\nlmargin, after skip,
 }
 
 
 
 \newcommand{\Title}[2][]{%
 	\tikzset{/newsletter/Title/.cd,#1}%
+	\vskip-.5\baselineskip%
 	\raisebox{1.5\ht\strutbox}{\hypertarget{intro}{}}%
 	\parbox{\linewidth}{%
-		\color{main-bg}\bfseries\scshape\Large%
+		\fontsize{50pt}{32pt}\selectfont%
+		\color{main-bg}\bfseries%
 		\newsletter@Title@alignment%
 		\MakeUppercase{#2}%
 	}%
