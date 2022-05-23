@@ -1,6 +1,6 @@
 # <img height=30 src="https://latex.codecogs.com/svg.latex?{\textsf{\bfseries\color[RGB]{255,216,102}Fore}}" alt="Fore">
 
-Fore is a $\LaTeX{}$ <img height=10 src="https://latex.codecogs.com/svg.latex?{\textsf{\bfseries\color[RGB]{255,216,102}\LaTeX{}}}" alt="Fore"> class that extends `beamer` for procedural and rapid build of material newsletters.
+Fore is a LaTeX class that extends `beamer` for procedural and rapid build of material newsletters.
 
 Fore provides a simple, modular and accessible component library to use as building blocks for beautiful newsletter and poster renders at speed, including functional and higher-order components, and utility classes.
 
