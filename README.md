@@ -29,7 +29,7 @@ $ cd fore
 - [x] Author
 - [x] Profile
 - [ ] Slides
-- [ ] Button
+- [x] Button
 - [ ] SocialMedia
 
 ## Citing Fore
@@ -39,7 +39,7 @@ Please use the following BibTeX entry when citing Fore:
 ```BibTeX
 @Misc{EP2022Fore,
   author =       {Elliott Phillips},
-  title =        {Doctor - A procedural, modern newsletter template},
+  title =        {Fore - Procedural material newsletters},
   howpublished = {GitHub},
   year =         {2022},
   url =          {https://github.com/ellsphillips/fore}
