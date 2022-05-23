@@ -2,10 +2,12 @@
 	/newsletter/Button/.cd,
 	variant/.is choice,
 	variant/primary/.code={%
-		\def\Button@variant{main-fg}%
+		\def\Button@variant@fg{white}%
+		\def\Button@variant@bg{main-fg}%
 	},
 	variant/secondary/.code={%
-		\def\Button@variant{main-bg!50}%
+		\def\Button@variant@fg{main-bg}%
+		\def\Button@variant@bg{main-bg!25}%
 	},
 	variant/.unknown/.code=\edef\Button@variant{%
 		I am customized to ``\pgfkeys@was@choice''. Argument: ``#1''%
@@ -18,19 +20,22 @@
 
 
 
+\newcommand{\newsletter@Button@content}{}
+
 \newcommand{\Button}[2][]{%
 	\tikzset{/newsletter/Button/.cd,#1}%
 	
-	\newcommand{\newsletter@Button@content}{%
+	\renewcommand{\newsletter@Button@content}{%
 		\begin{tikzpicture}%
 			\node[%
 				draw=none,
-				fill=\Button@variant, % \Button@variant@bg
+				text=\Button@variant@fg,
+				fill=\Button@variant@bg,
 				rectangle,
 				inner sep=1cm,
 				rounded corners=5mm,
 			] {%
-				\color{white}\bfseries\MakeUppercase{#2}%
+				\bfseries\MakeUppercase{\newsletter@Button@text}%
 			};%
 		\end{tikzpicture}%
 	}%
