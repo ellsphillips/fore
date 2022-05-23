@@ -1,4 +1,4 @@
-\documentclass[]{newsletter}
+\documentclass[]{fore}
 
 \title[\TeX{} Newsletter]{A Modern \LaTeX{} Newsletter}
 \author{Elliott Phillips}
@@ -11,8 +11,8 @@
 	
 \input{src/frontcover}
 
-\input{src/page1}
-
-\input{src/page2}
+\foreach \pageno in {1,...,2} {%
+	\input{src/page\pageno}
+}
 
 \end{document}
