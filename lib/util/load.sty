@@ -1,0 +1,8 @@
+\newcommand{\loadpages}{%
+	\foreach \pageno in {1,...,5} {%
+		\edef\PageContent{src/page\pageno}%
+		\IfFileExists{\PageContent}{%
+			\input{\PageContent}%
+		}%
+	}
+}

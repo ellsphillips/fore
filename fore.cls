@@ -64,6 +64,8 @@
 \RequirePackage{%
 	lib/util/colour,
 	lib/util/layout,
+	lib/util/load,
+	lib/util/props,
 }
 
 \RequirePackage{%
@@ -85,4 +87,5 @@
 	lib/components/Profile,
 	lib/components/Slides,
 	lib/components/Article,
+	lib/components/Button,
 }

@@ -14,18 +14,6 @@
 \newcommand{\Author}[1][]{%
 	\tikzset{/newsletter/Author/.cd,#1}%
 	
-	\newif\if@newsletter@Author@email@given
-	\@newsletter@Author@email@giventrue
-	
-	\edef\authoremailcheck{\pgfkeysvalueof{/newsletter/Author/email}} 
-	\edef\compareval{\pgfkeysnovalue}
-	\ifdefequal{\authoremailcheck}{\compareval}{%
-		\@newsletter@Author@email@givenfalse%
-	}{%
-		\edef\newsletter@Author@email{\authoremailcheck}
-		\@newsletter@Author@email@giventrue%
-	}
-	
 	\newcommand{\newsletter@Author@content}{%
 		\begin{tikzpicture}%
 			\node[] (author-img) {%
@@ -43,11 +31,11 @@
 		\end{tikzpicture}%
 	}
 
-	\if@newsletter@Author@email@given%
-		\href{mailto:\newsletter@Author@email}{%
-			\newsletter@Author@content%
-		}
-	\else%
+	\checkpropempty{/newsletter/Author/email}{%
 		\newsletter@Author@content%
-	\fi%
+	}{%
+		\href{mailto:\checkpropresult}{%
+			\newsletter@Author@content%
+		}%
+	}
 }

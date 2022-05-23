@@ -1,0 +1,50 @@
+\pgfkeys{
+	/newsletter/Button/.cd,
+	variant/.is choice,
+	variant/primary/.code={%
+		\def\Button@variant@fg{white}%
+		\def\Button@variant@bg{main-fg}%
+	},
+	variant/secondary/.code={%
+		\def\Button@variant@fg{main-bg}%
+		\def\Button@variant@bg{main-bg!25}%
+	},
+	variant/.unknown/.code=\edef\Button@variant{%
+		I am customized to ``\pgfkeys@was@choice''. Argument: ``#1''%
+	},
+	variant/.default=primary, variant,
+	text/.store in=\newsletter@Button@text,
+	text/.default={link}, text,
+	link/.initial,
+}
+
+
+
+\newcommand{\newsletter@Button@content}{}
+
+\newcommand{\Button}[2][]{%
+	\tikzset{/newsletter/Button/.cd,#1}%
+	
+	\renewcommand{\newsletter@Button@content}{%
+		\begin{tikzpicture}%
+			\node[%
+				draw=none,
+				text=\Button@variant@fg,
+				fill=\Button@variant@bg,
+				rectangle,
+				inner sep=1cm,
+				rounded corners=5mm,
+			] {%
+				\bfseries\MakeUppercase{\newsletter@Button@text}%
+			};%
+		\end{tikzpicture}%
+	}%
+
+	\checkpropempty{/newsletter/Button/link}{%
+		\newsletter@Button@content%
+	}{%
+		\href{\checkpropresult}{%
+			\newsletter@Button@content
+		}%
+	}%
+}
