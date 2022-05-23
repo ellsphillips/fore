@@ -1,13 +1,13 @@
 \pgfkeys{
-	/newsletter/spacer/.cd,
-	height/.store in=\spacerHeight,
-	height/.default={\nlmargin},
+	/newsletter/Spacer/.cd,
+	height/.store in=\newsletter@Spacer@height,
+	height/.default={\nlmargin}, height,
 }
 
 
 
 \newcommand{\Spacer}[1][]{%
-	\pgfkeys{/newsletter/spacer/.cd,#1}%
+	\pgfkeys{/newsletter/Spacer/.cd,#1}%
 	\begin{tikzpicture}%
 		\fill[%
 			inner sep=0,
@@ -20,6 +20,6 @@
 				]%
 			},
 			pattern color=pink%
-		] (0,0) rectangle (\nlwidth,\spacerHeight);
+		] (0,0) rectangle (\nlwidth,\newsletter@Spacer@height);
 	\end{tikzpicture}%
 }
