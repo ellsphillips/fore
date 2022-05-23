@@ -1,0 +1,10 @@
+\newcommand{\checkpropempty}[3]{%
+	\edef\propvalue{\pgfkeysvalueof{#1}} 
+	\edef\emptykeyval{\pgfkeysnovalue}
+	\ifdefequal{\propvalue}{\emptykeyval}{%
+		#2%
+	}{%
+		\edef\checkpropresult{\propvalue}
+		#3%
+	}
+}
