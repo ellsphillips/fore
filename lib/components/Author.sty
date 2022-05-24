@@ -2,11 +2,13 @@
 	/newsletter/Author/.cd,
 	image/.store in=\newsletter@Author@image,
 	image/.default={img/author-placeholder.pdf}, image,
+	image width/.store in=\newsletter@Author@imageWidth,
+	image width/.default={1.5}, image width,
 	name/.store in=\newsletter@Author@name,
-	name/.default=0.15\nlwidth, name,
+	name/.default={}, name,
 	email/.initial,
 	team/.store in=\newsletter@Author@team,
-	team/.default=0.15\nlwidth, team,
+	team/.default={}, team,
 }
 
 
@@ -20,12 +22,13 @@
 		\begin{tikzpicture}%
 			\node[] (author-img) {%
 				\Rounded{%
-					\includegraphics[height=1.5\nlmargin]{\newsletter@Author@image}%
+					\includegraphics[width=\newsletter@Author@imageWidth\nlmargin]{\newsletter@Author@image}%
 				}
 			};%
 		%
 			\node[anchor=west] at ([shift={(0.25\nlmargin,0)}]author-img.east) {%
 				\parbox{0.2\nlwidth}{%
+					\small%
 					\textbf{\newsletter@Author@name}\newline%
 					\textit{\newsletter@Author@team}%
 				}%
