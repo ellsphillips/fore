@@ -7,9 +7,75 @@
 	
 	\Spacer[height=\nlmargin]
 	
+	\begin{TOC}
+		\TOCStack[2]{%
+			\TOCEntry[%
+				width=2, height=1, colour={main-bg!100},
+				text={From the Author},
+				link={foreword},
+			]\newline%
+		%
+			\TOCEntry[%
+				width=1, height=1, colour={main-bg!85},
+				text={Profile},
+				link={profile},
+			]%
+		%
+			\TOCEntry[%
+				width=1, height=1, colour={main-bg!70},
+				text={Socials},
+				link={socials},
+			]%
+		}
+	%
+		\TOCStack[1]{%
+			\TOCEntry[%
+				width=1, height=2, colour={main-bg!94},
+				text={Project showcase},
+				link={showcase},
+			]%
+		}%
+	%
+		\TOCStack[1]{%
+			\TOCEntry[%
+				width=1, height=1, colour={main-bg!70},
+				text={Upcoming events},
+				link={calendar},
+			]\newline%
+		%
+			\TOCEntry[%
+				width=1, height=1, colour={main-bg!100},
+				text={Updates},
+				link={updates},
+			]%
+		}%
+	%
+		\TOCStack[2]{%
+			\TOCEntry[%
+				width=1, height=1, colour={main-bg!85},
+				text={New starters},
+				link={induction},
+			]%
+		%
+			\TOCEntry[%
+				width=1, height=1, colour={main-bg!95},
+				text={Article},
+				link={article},
+			]\newline%
+		%
+			\TOCEntry[%
+				width=2, height=1, colour={main-bg!75},
+				text={Recent conferences},
+				link={presentations},
+			]%
+		}
+	\end{TOC}
+
+	\Spacer[height=\nlmargin]
+	
 	\begin{AutoColumns}%
 		\begin{Column}[width=0.4]%
-			\Title{From the author}
+			\Title[ref=foreword]{From the author}
 			
 			\begin{Foreword}[%
 				image=img/ep.jpg,
@@ -27,7 +93,7 @@
 		\end{Column}%
 	%
 		\begin{Column}[width=0.6]%
-			\Title{Updates}
+			\Title[ref=updates]{Updates}
 			
 			\begin{Updates}
 				\Update[Something important]{%
@@ -47,25 +113,25 @@
 
 	
 
-	\Spacer[height=\nlmargin]
-
-	\Title[alignment=\centering]{Centered heading}
-	
-	\begin{AutoColumns}%
-		\begin{Column}[width=0.3]%
-			\begin{Tile}[width=0.3\nlwidth-0.5\nlmargin]
-				\lipsum[1]%
-			\end{Tile}%
-		\end{Column}%
-	%
-		\begin{Column}[width=0.7]%
-			\begin{Tile}[width=0.7\nlwidth-0.5\nlmargin]
-				\lipsum[1]%
-			\end{Tile}%
-			
-			\Rounded{%
-				\includegraphics[width=.2\paperwidth]{img/ep.jpg}%
-			}
-		\end{Column}%
-	\end{AutoColumns}%
+%	\Spacer[height=\nlmargin]
+%
+%	\Title[alignment=\centering]{Centered heading}
+%	
+%	\begin{AutoColumns}%
+%		\begin{Column}[width=0.3]%
+%			\begin{Tile}[width=0.3\nlwidth-0.5\nlmargin]
+%				\lipsum[1]%
+%			\end{Tile}%
+%		\end{Column}%
+%	%
+%		\begin{Column}[width=0.7]%
+%			\begin{Tile}[width=0.7\nlwidth-0.5\nlmargin]
+%				\lipsum[1]%
+%			\end{Tile}%
+%			
+%			\Rounded{%
+%				\includegraphics[width=.2\paperwidth]{img/ep.jpg}%
+%			}
+%		\end{Column}%
+%	\end{AutoColumns}%
 \end{Page}

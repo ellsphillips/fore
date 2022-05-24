@@ -85,6 +85,7 @@
 	lib/components/Footer,
 	lib/components/Logo,
 	lib/components/Spacer,
+	lib/components/TOC,
 	lib/components/Title,
 	lib/components/Author,
 	lib/components/Foreword,

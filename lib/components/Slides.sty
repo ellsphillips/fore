@@ -64,17 +64,19 @@
 %	}%
 %}
 
+\newcommand{\calcThumbnailHeight}[1]{%
+	\dimexpr(#1) * 9/16\relax%
+}
 
-
-\newcommand{\Thumbnail}[3]{%
+\newcommand{\Thumbnail}[2]{%
 	\href{https://www.github.com/ellsphillips/newsletter}{%
 		\Rounded{
 			\includegraphics[%
 				clip,%
 				trim = 0mm 0mm 0mm 0mm,%
-				width = #1,% 0.635\textwidth
-				height = #2% 0.24\paperheight
-			]{#3}%
+				width = #1,
+				height = \calcThumbnailHeight{#1},
+			]{#2}%
 		}
 	}%
 }
@@ -88,15 +90,15 @@
 		\node[anchor=north east] {%
 			\begin{tikzpicture}[remember picture]%
 				\node[anchor = west] (slide-1) at (0, 0) {%
-					\Thumbnail{0.7\nlwidth-.5\nlmargin-2cm}{0.394\nlwidth}{\newsletter@Slides@first@slide}%
+					\Thumbnail{0.66\nlwidth}{\newsletter@Slides@first@slide}%
 				};
 				%
 				\node[anchor = north west] (slide-2) at ([yshift = -\nlmargin]slide-1.south west) {%
-					\Thumbnail{0.35\nlwidth-.5\nlmargin-2cm}{0.197\nlwidth}{\newsletter@Slides@second@slide}%
+					\Thumbnail{0.33\nlwidth-.5\nlmargin}{\newsletter@Slides@second@slide}%
 				};
 				%
 				\node[anchor = north east] (slide-3) at ([yshift = -\nlmargin]slide-1.south east) {%
-					\Thumbnail{0.35\nlwidth-.5\nlmargin-2cm}{0.197\nlwidth}{\newsletter@Slides@third@slide}%
+					\Thumbnail{0.33\nlwidth-.5\nlmargin}{\newsletter@Slides@third@slide}%
 				};
 			\end{tikzpicture}%
 		};%
@@ -105,33 +107,37 @@
 			\begin{Tile}[%
 				bg=main-bg!15,
 				fg=grey-100,
-				width=.3\nlwidth-18mm,
+				width=.33\nlwidth-\nlmargin+3.3mm,
 			]%
-				\begin{minipage}[c][\dimexpr0.591\nlwidth+5mm\relax][t]{\linewidth}%
-%					\color{grey-100}\bfseries\fontsize{33}{36}\selectfont
+				\begin{minipage}[c][\calcThumbnailHeight{\nlwidth-.5\nlmargin}+1mm][t]{\linewidth}%
+					\color{grey-100}\large
 					
 					\textbf{\newsletter@Slides@first@title} \newline
-					\newsletter@Slides@first@author\newline
+					\newsletter@Slides@first@author \\[-1.5cm]
 					
-					\newsletter@Slides@first@description \newline
+					\textit{\newsletter@Slides@first@description} \newline
 					
 					\textbf{\newsletter@Slides@second@title} \newline
-					\newsletter@Slides@second@author\newline
+					\newsletter@Slides@second@author\\[-1.5cm]
 					
-					\newsletter@Slides@second@description \newline
+					\textit{\newsletter@Slides@second@description} \newline
 					
 					\textbf{\newsletter@Slides@third@title} \newline
-					\newsletter@Slides@third@author\newline
+					\newsletter@Slides@third@author\\[-1.5cm]
 					
-					\newsletter@Slides@third@description
+					\textit{\newsletter@Slides@third@description}
 					
-					\vskip2\baselineskip
+					\vfill
 					
-					View the full slide packs by clicking the tiles adjacent.%
+					\Button[
+						variant=secondary,
+						text={\parbox{\linewidth-2cm}{\centering All presentations}},
+						link={https://www.github.com/ellsphillips/fore},
+					]%
 				\end{minipage}
 			\end{Tile}%
-		};
-	\end{tikzpicture}
+		};%
+	\end{tikzpicture}%
 	
 	\BODY%
 }

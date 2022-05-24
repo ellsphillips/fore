@@ -4,7 +4,7 @@
 	
 	\begin{AutoColumns}%
 		\begin{Column}[width=0.5]%
-			\Title[after skip=-.5\nlmargin]{Elliott Phillips}%
+			\Title[ref=profile, after skip=-.5\nlmargin]{Elliott Phillips}%
 			
 			\begin{Profile}[%
 				image=img/ep.jpg,
@@ -14,7 +14,7 @@
 		\end{Column}%
 	%
 		\begin{Column}[width=0.5]%
-			\Title{Button variants}%
+			\Title[ref=showcase]{Button variants}%
 			
 			\Button[link=https://www.github.com/ellsphillips/fore]
 			
@@ -37,24 +37,30 @@
 	
 	
 
-	\Title{In case you missed it...}%
+	\Title[ref=presentations]{In case you missed it...}%
 	
 	\Slides[%
-		first slide={example-image-a},
+		first slide={img/presentation.pdf},
 		first author={Elliott Phillips},
 		first title={A dynamic TeX newsletter},
 		first link=https://www.github.com/ellsphillips/fore,
-		first description={A procedural newsletter template for professionals, built entirely in \TeX{}.},
-		second slide={example-image-b},
+		first description={%
+			A \LaTeX{} class that extends beamer for procedural and rapid build of material newsletters.%
+		},
+		second slide={img/presentation.pdf},
 		second author={Elliott Phillips},
-		second title={Automating data-driven reporting},
+		second title={Automating data-driven reports},
 		second link=https://www.github.com/ellsphillips/doctor,
-		second description={A fascinating topic...},
-		third slide={example-image-c},
+		second description={%
+			An automated documentation assistant built in Python and TeX for procedural, data-driven reporting.%
+		},
+		third slide={img/presentation.pdf},
 		third author={Elliott Phillips},
 		third title={ons.dev},
 		third link=https://www.github.com/ellsphillips/ons.dev,
-		third description={An interesting subject...},
+		third description={%
+			A new platform to accelerate learning across several technical disciplines, bridging the gap between junior and senior development roles.%
+		},
 	]
 	
 %	\Slides[%

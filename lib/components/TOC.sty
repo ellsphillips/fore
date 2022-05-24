@@ -1,0 +1,65 @@
+\newcommand{\tocstyle}{%
+	\fontsize{36}{44}\selectfont%
+	\centering\bfseries\color{white}%
+}
+
+\newlength{\tocunit}
+\setlength{\tocunit}{0.167\nlwidth}
+
+
+
+\newcommand{\TOCStack}[2][1]{%
+	\parbox{#1\tocunit}{#2}%
+	\hspace*{-11pt}%
+}
+
+
+
+\pgfkeys{
+	/newsletter/TOCEntry/.cd,
+	width/.store in=\newsletter@TOC@width,
+	width/.default=1, width,
+	height/.store in=\newsletter@TOC@height,
+	height/.default=1, height,
+	text/.store in=\newsletter@TOC@text,
+	text/.default={}, text,
+	link/.store in=\newsletter@TOC@link,
+	link/.default={}, link,
+	colour/.store in=\newsletter@TOC@colour,
+	colour/.default={main-bg!50}, colour,
+}
+
+
+
+\newcommand{\TOCEntry}[1][]{
+	\tikzset{/newsletter/TOCEntry/.cd,#1}%
+	\tikz\node[%
+		draw=none,
+		inner sep=-1mm,
+		outer sep=0mm,
+		anchor=west,
+		hyperlink node=\newsletter@TOC@link,
+		\newsletter@TOC@colour,
+	] (toc-entry) {%
+		\rule{%
+			\newsletter@TOC@width\tocunit%
+		}{%
+			\newsletter@TOC@height\tocunit%
+		}%
+	}%
+	node[anchor=center] at (toc-entry.center) {%
+		\parbox{.5\newsletter@TOC@width\tocunit}{\tocstyle\newsletter@TOC@text}%
+	};%
+	\hspace*{-5.5pt}%
+}
+
+
+
+\NewEnviron{TOC}[1][]{%
+	\tikzset{/newsletter/TOC/.cd,#1}%
+	\Rounded[shadow=true]{%
+		\resizebox{\nlwidth}{!}{%
+			\BODY%
+		}%
+	}%
+}
