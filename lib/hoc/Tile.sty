@@ -14,16 +14,16 @@
 
 \NewEnviron{Tile}[1][]{%
 	\tikzset{/newsletter/Tile/.cd,#1}%
-	\begin{tikzpicture}
+	\begin{tikzpicture}%
 		\node[anchor = north west] (content) {%
-			\color{\newsletter@Tile@fg}
-			\parbox{%
+			\color{\newsletter@Tile@fg}%
+			\begin{varwidth}{%
 				\newsletter@Tile@width%
 				-\newsletter@Tile@padding%
 				-\newsletter@Tile@padding%
-			}{%
-				\BODY
 			}%
+				\BODY%
+			\end{varwidth}%
 		};%
 	%
 		\begin{pgfonlayer}{middle}%
