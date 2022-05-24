@@ -20,7 +20,7 @@ $ cd fore
 
 - [x] Header
 - [x] Footer
-- [ ] TOC
+- [x] TOC
 - [x] Foreword
 - [x] Updates
 - [ ] Calendar
