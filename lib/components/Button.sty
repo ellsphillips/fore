@@ -22,9 +22,9 @@
 
 
 
-\newcommand{\newsletter@Button@content}{}
+\newcommand{\newsletter@Button@content}[1]{}
 
-\newcommand{\Button}[2][]{%
+\newcommand{\Button}[1][]{%
 	\tikzset{/newsletter/Button/.cd,#1}%
 	
 	\renewcommand{\newsletter@Button@content}{%
