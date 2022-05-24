@@ -39,56 +39,82 @@
 
 	\Title[ref=presentations]{In case you missed it...}%
 	
-	\Slides[%
-		first slide={img/presentation.pdf},
-		first author={Elliott Phillips},
-		first title={A dynamic TeX newsletter},
-		first link=https://www.github.com/ellsphillips/fore,
-		first description={%
-			A \LaTeX{} class that extends beamer for procedural and rapid build of material newsletters.%
+%	\Slides[%
+%		first slide={img/presentation.pdf},
+%		first author={Elliott Phillips},
+%		first title={A dynamic TeX newsletter},
+%		first link=https://www.github.com/ellsphillips/fore,
+%		first description={%
+%			A \LaTeX{} class that extends beamer for procedural and rapid build of material newsletters.%
+%		},
+%		second slide={img/presentation.pdf},
+%		second author={Elliott Phillips},
+%		second title={Automating data-driven reports},
+%		second link=https://www.github.com/ellsphillips/doctor,
+%		second description={%
+%			An automated documentation assistant built in Python and TeX for procedural, data-driven reporting.%
+%		},
+%		third slide={img/presentation.pdf},
+%		third author={Elliott Phillips},
+%		third title={ons.dev},
+%		third link=https://www.github.com/ellsphillips/ons.dev,
+%		third description={%
+%			A new platform to accelerate learning across several technical disciplines, bridging the gap between junior and senior development roles.%
+%		},
+%	]
+	
+	\begin{Slides}[%
+		first={%
+			\Thumbnail[%
+				image={example-image-a},
+				url={https://www.github.com/ellsphillips/fore},
+				width={0.66\nlwidth},
+			]%
 		},
-		second slide={img/presentation.pdf},
-		second author={Elliott Phillips},
-		second title={Automating data-driven reports},
-		second link=https://www.github.com/ellsphillips/doctor,
-		second description={%
-			An automated documentation assistant built in Python and TeX for procedural, data-driven reporting.%
+		second={%
+			\Thumbnail[%
+				image={example-image-b},
+				url={https://www.github.com/ellsphillips/doctor},
+				width={0.33\nlwidth-.5\nlmargin},
+			]%
 		},
-		third slide={img/presentation.pdf},
-		third author={Elliott Phillips},
-		third title={ons.dev},
-		third link=https://www.github.com/ellsphillips/ons.dev,
-		third description={%
-			A new platform to accelerate learning across several technical disciplines, bridging the gap between junior and senior development roles.%
+		third={%
+			\Thumbnail[%
+				image={example-image-c},
+				url={https://www.github.com/ellsphillips/ons.dev},
+				width={0.33\nlwidth-.5\nlmargin},
+			]%
 		},
 	]
-	
-%	\Slides[%
-%		first = \Presentation[%
-%			slide=example-image-a,
-%			author={Elliott Phillips},
-%			title={A dynamic TeX newsletter},
-%			link=https://www.github.com/ellsphillips/newsletter,
-%			description={%
-%				A procedural newsletter template for professionals, built entirely in \TeX{}.%
-%			},
-%		],
-%		second = \Presentation[%
-%			slide=example-image-b,
-%			author={John Smith},
-%			title={Cool presentation},
-%			link=https://www.github.com/ellsphillips/newsletter,
-%			description={%
-%				A fascinating topic...%
-%			},
-%		],
-%		third = \Presentation[%
-%			slide=example-image-c,
-%			author={Jane Doe},
-%			title={Epic slideshow},
-%			link=https://www.github.com/ellsphillips/newsletter,
-%			description={An interesting subject...},
-%		]%
-%	]
-
+		\Author[%
+			name={A dynamic TeX newsletter},
+			team={Elliott Phillips, Data Scientist},
+			image=img/ep.jpg,
+			image width=1,
+		]
+		
+		A \LaTeX{} class that extends beamer, Fore provides a simple, modular and accessible component library to procedurally and rapidly build material newsletters and posters.%
+		
+		\Spacer[height=\nlmargin]%
+		
+		\Author[%
+			name={Automating data-driven reports},
+			team={Elliott Phillips, Data Scientist},
+			image=img/ep.jpg,
+			image width=1,
+		]
+		
+		An automated documentation assistant for procedural, data-driven reporting. Doctor simplifies the reporting build process through an intuitive Python API and customisable \LaTeX{} class to responsively markup Pythonic data objects to professionally typeset lightweight documents.%
+		
+		\Spacer[height=\nlmargin]%
+		
+		\Author[%
+			name={ons.dev},
+			team={Elliott Phillips, Data Scientist},
+			image=img/ep.jpg,
+			image width=1,
+		]%
+		
+		A new platform to accelerate learning across several technical disciplines, bridging the gap between junior and senior development roles.%
+	\end{Slides}
 \end{Page}
