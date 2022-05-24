@@ -1,105 +1,72 @@
 \pgfkeys{
-	/newsletter/Slides/.cd,
-	first slide/.store in = \newsletter@Slides@first@slide,
-	first slide/.default = example-image, first slide,
-	first author/.store in = \newsletter@Slides@first@author,
-	first author/.default = {}, first author,
-	first title/.store in = \newsletter@Slides@first@title,
-	first title/.default = {}, first title,
-	first link/.store in = \newsletter@Slides@first@link,
-	first link/.default = {}, first link,
-	first description/.store in = \newsletter@Slides@first@description,
-	first description/.default = {}, first description,
-%
-	second slide/.store in = \newsletter@Slides@second@slide,
-	second slide/.default = example-image, second slide,
-	second author/.store in = \newsletter@Slides@second@author,
-	second author/.default = {}, second author,
-	second title/.store in = \newsletter@Slides@second@title,
-	second title/.default = {}, second title,
-	second link/.store in = \newsletter@Slides@second@link,
-	second link/.default = {}, second link,
-	second description/.store in = \newsletter@Slides@second@description,
-	second description/.default = {}, second description,
-%
-	third slide/.store in = \newsletter@Slides@third@slide,
-	third slide/.default = example-image, third slide,
-	third author/.store in = \newsletter@Slides@third@author,
-	third author/.default = {}, third author,
-	third title/.store in = \newsletter@Slides@third@title,
-	third title/.default = {}, third title,
-	third link/.store in = \newsletter@Slides@third@link,
-	third link/.default = {}, third link,
-	third description/.store in = \newsletter@Slides@third@description,
-	third description/.default = {}, third description,
+	/newsletter/Thumbnail/.cd,
+	image/.store in=\newsletter@Thumbnail@image,
+	image/.default={}, image,
+	url/.store in=\newsletter@Thumbnail@url,
+	url/.default={}, url,
+	width/.store in=\newsletter@Thumbnail@width,
+	width/.default={\linewidth}, width,
 }
 
 
-
-%\pgfkeys{
-%	/newsletter/Presentation/.cd,
-%	image/.store in = \newsletter@Presentation@image,
-%	author/.store in = \newsletter@Presentation@author,
-%	title/.store in = \newsletter@Presentation@title,
-%	description/.store in = \newsletter@Presentation@description,
-%	link/.store in = \newsletter@Presentation@link,
-%	link/.default = {}, link,
-%	width/.store in = \newsletter@Presentation@width,
-%	height/.store in = \newsletter@Presentation@height,
-%}
-%
-%
-%
-%\newcommand{\Presentation}[3]{%
-%	\tikzset{/newsletter/Presentation/.cd,#1}%
-%	\href{\newsletter@Presentation@link}{%
-%		\Rounded{
-%			\includegraphics[%
-%				clip,%
-%				trim = 0mm 0mm 0mm 0mm,%
-%				width = \newsletter@Presentation@width,% 0.635\textwidth
-%				height = \newsletter@Presentation@height% 0.24\paperheight
-%			]{\newsletter@Presentation@image}%
-%		}
-%	}%
-%}
 
 \newcommand{\calcThumbnailHeight}[1]{%
 	\dimexpr(#1) * 9/16\relax%
 }
 
-\newcommand{\Thumbnail}[2]{%
-	\href{https://www.github.com/ellsphillips/newsletter}{%
-		\Rounded{
-			\includegraphics[%
-				clip,%
-				trim = 0mm 0mm 0mm 0mm,%
-				width = #1,
-				height = \calcThumbnailHeight{#1},
-			]{#2}%
-		}
+\newcommand{\Thumbnail}[1][]{%
+	\tikzset{/newsletter/Thumbnail/.cd,#1}%
+	\href{\newsletter@Thumbnail@url}{%
+		\Rounded{%
+			\includegraphics[
+				width=\newsletter@Thumbnail@width,
+				height=\calcThumbnailHeight{\newsletter@Thumbnail@width}
+			]{\newsletter@Thumbnail@image}%
+		}%
 	}%
 }
+
+
+
+\pgfkeys{
+	/newsletter/Slides/.cd,
+	first/.store in=\newsletter@Slides@first,
+	first/.default={}, first,
+	second/.store in=\newsletter@Slides@second,
+	second/.default={}, second,
+	third/.store in=\newsletter@Slides@third,
+	third/.default={}, third,
+}
+
+
+
+\newlength{\bigthumb}
+\setlength{\bigthumb}{0.66\nlwidth}
+
+\newlength{\lilthumb}
+\setlength{\lilthumb}{\dimexpr0.33\nlwidth-.5\nlmargin\relax}
 
 
 
 \NewEnviron{Slides}[1][]{%
 	\tikzset{/newsletter/Slides/.cd,#1}%
 	
+	\let\newsletter@Slides@BODY\BODY
+	
 	\begin{tikzpicture}
 		\node[anchor=north east] {%
 			\begin{tikzpicture}[remember picture]%
 				\node[anchor = west] (slide-1) at (0, 0) {%
-					\Thumbnail{0.66\nlwidth}{\newsletter@Slides@first@slide}%
-				};
-				%
+					\newsletter@Slides@first%
+				};%
+			%
 				\node[anchor = north west] (slide-2) at ([yshift = -\nlmargin]slide-1.south west) {%
-					\Thumbnail{0.33\nlwidth-.5\nlmargin}{\newsletter@Slides@second@slide}%
-				};
-				%
+					\newsletter@Slides@second%
+				};%
+			%
 				\node[anchor = north east] (slide-3) at ([yshift = -\nlmargin]slide-1.south east) {%
-					\Thumbnail{0.33\nlwidth-.5\nlmargin}{\newsletter@Slides@third@slide}%
-				};
+					\newsletter@Slides@third%
+				};%
 			\end{tikzpicture}%
 		};%
 	%
@@ -110,25 +77,9 @@
 				width=.33\nlwidth-\nlmargin+3.3mm,
 			]%
 				\begin{minipage}[c][\calcThumbnailHeight{\nlwidth-.5\nlmargin}+1mm][t]{\linewidth}%
-					\color{grey-100}\large
-					
-					\textbf{\newsletter@Slides@first@title} \newline
-					\newsletter@Slides@first@author \\[-1.5cm]
-					
-					\textit{\newsletter@Slides@first@description} \newline
-					
-					\textbf{\newsletter@Slides@second@title} \newline
-					\newsletter@Slides@second@author\\[-1.5cm]
-					
-					\textit{\newsletter@Slides@second@description} \newline
-					
-					\textbf{\newsletter@Slides@third@title} \newline
-					\newsletter@Slides@third@author\\[-1.5cm]
-					
-					\textit{\newsletter@Slides@third@description}
-					
-					\vfill
-					
+					\color{grey-100}
+					\newsletter@Slides@BODY%
+					\vfill%
 					\Button[
 						variant=secondary,
 						text={\parbox{\linewidth-2cm}{\centering All presentations}},
@@ -138,6 +89,4 @@
 			\end{Tile}%
 		};%
 	\end{tikzpicture}%
-	
-	\BODY%
 }
