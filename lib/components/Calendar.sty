@@ -117,9 +117,10 @@
 	link/.default={}, link,
 }
 
-\newcommand{\Event}[1][]{
+\newcommand{\Event}[1][]{%
 	\tikzset{/newsletter/Event/.cd,#1}%
 	\href{\eventlink}{%
+		\vskip-3mm%
 		\begin{tikzpicture}
 			\node[%
 				inner sep=3mm,
@@ -132,20 +133,27 @@
 					\eventday%
 				}%
 			};
-			\node[anchor=north west] (info) at ([xshift=5mm]date.north east) {%
+			\node[%
+				anchor=north west,
+				inner sep=1mm,
+				outer sep=0,
+			] (info) at ([xshift=5mm]date.north east) {%
 				\parbox{0.15\paperwidth}{%
 					\fontsize{24}{30}\selectfont\raggedright
 					\textcolor{black}{\bfseries \eventtitle} \newline
 					\color{black!60}\eventorganiser \newline
 					\itshape\color{black!40}\eventtime
-				}
+				}%
 			};
-		\end{tikzpicture}
+		\end{tikzpicture}%
 	}
 }
 
 \newcommand{\EventList}[1][]{%
-	\tikz\node[] {%
+	\tikz\node[
+		inner sep=0,
+		outer sep=0,
+	] {%
 		\parbox{0.1\nlwidth}{%
 			#1%
 		}%
