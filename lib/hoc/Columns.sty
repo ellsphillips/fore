@@ -81,7 +81,11 @@
 \NewEnviron{Column}[1][]{%
 	\tikzset{/newsletter/column/.cd,#1}%
 	\begin{column}{\newsletter@column@width\linewidth-.5\nlmargin}%
-		\setbeamercolor{nlcolumn}{fg=black,bg=orange!20}%
+		\ifnldevelopment
+			\setbeamercolor{nlcolumn}{fg=black,bg=orange!20}%
+		\else
+			\setbeamercolor{nlcolumn}{fg=black,bg=main-bg!5}%
+		\fi
 		\begin{beamercolorbox}[sep=0pt]{nlcolumn}%
 			\BODY%
 			\autoheight%

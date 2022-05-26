@@ -53,9 +53,11 @@
 			};%
 		%
 			\begin{pgfonlayer}{background}%
-				\node[newsletter bounding box] at (current page.center) {};
-			%
-				\draw[red, thick] (page-content.north west) rectangle (page-content.south east);
+				\ifnldevelopment%
+					\node[newsletter bounding box] at (current page.center) {};
+				%
+					\draw[red, thick] (page-content.north west) rectangle (page-content.south east);
+				\fi%
 			\end{pgfonlayer}%
 		\end{tikzpicture}%
 	\end{frame}%

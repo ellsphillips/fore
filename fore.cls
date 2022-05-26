@@ -103,6 +103,9 @@
 \DeclareOptionX{issue}{\setcounter{issue}{#1}}
 \ExecuteOptionsX{issue=1}
 
+\newif\ifnldevelopment
+\DeclareOptionX{development}{\nldevelopmenttrue}
+
 \ProcessOptionsX \relax
 
 % ------------------------------------------------------------------------------
