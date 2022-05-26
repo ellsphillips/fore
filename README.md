@@ -23,12 +23,12 @@ $ cd fore
 - [x] TOC
 - [x] Foreword
 - [x] Updates
-- [ ] Calendar
+- [x] Calendar
 - [x] Article
 - [x] Title
 - [x] Author
 - [x] Profile
-- [ ] Slides
+- [x] Slides
 - [x] Button
 - [ ] SocialMedia
 
