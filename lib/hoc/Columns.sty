@@ -80,7 +80,7 @@
 
 \NewEnviron{Column}[1][]{%
 	\tikzset{/newsletter/column/.cd,#1}%
-	\begin{column}{\newsletter@column@width\nlwidth-.5\nlmargin}%
+	\begin{column}{\newsletter@column@width\linewidth-.5\nlmargin}%
 		\setbeamercolor{nlcolumn}{fg=black,bg=orange!20}%
 		\begin{beamercolorbox}[sep=0pt]{nlcolumn}%
 			\BODY%
