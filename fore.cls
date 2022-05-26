@@ -94,6 +94,7 @@
 	lib/components/Slides,
 	lib/components/Article,
 	lib/components/Button,
+	lib/components/Calendar,
 }
 
 \RequirePackage{xkeyval}
