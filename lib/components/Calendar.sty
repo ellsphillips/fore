@@ -1,0 +1,166 @@
+\def\pgfcalendarmonthname#1{%
+	\ifcase #1
+	\or January
+	\or February
+	\or March
+	\or April
+	\or May
+	\or June
+	\or July
+	\or August
+	\or September
+	\or October
+	\or November
+	\or Decemeber
+	\fi
+}
+
+\makeatletter
+\tikzset{
+	day headings/.style={
+		day heading/.style={#1}
+	},
+	day heading/.style={},
+	day letter headings/.style={
+		execute before day scope={
+			\ifdate{day of month=1}{%
+				\pgfmathsetlength{\pgf@ya}{\tikz@lib@cal@yshift}%
+				\pgfmathsetlength\pgf@xa{\tikz@lib@cal@xshift}%
+				\pgftransformyshift{-\pgf@ya}
+				\foreach \d/\l in {0/M,1/T,2/W,3/T,4/F,5/S,6/S} {
+					\pgf@xa=\d\pgf@xa%
+					\pgftransformxshift{\pgf@xa}%
+					\pgftransformyshift{\pgf@ya}%
+					\node[every day,day heading]{\l};%
+				}
+			}{}%
+		}%
+	},
+%
+	rectangle/.style={
+		nodes={draw,thick}
+	},
+	triangle nw/.style={
+		execute at end day scope={\draw[thick] (cal-\%y0-\%m0-\%d0.south west) |- (cal-\%y0-\%m0-\%d0.north east) -- cycle;}
+	},
+	triangle ne/.style={
+		execute at end day scope={\draw[thick] (cal-\%y0-\%m0-\%d0.north west) -| (cal-\%y0-\%m0-\%d0.south east) -- cycle;}
+	},
+	triangle sw/.style={
+		execute at end day scope={\draw[thick] (cal-\%y0-\%m0-\%d0.north west) |- (cal-\%y0-\%m0-\%d0.south east) -- cycle;}
+	},
+	triangle se/.style={
+		execute at end day scope={\draw[thick] (cal-\%y0-\%m0-\%d0.south west) -| (cal-\%y0-\%m0-\%d0.north east) -- cycle;}
+	},
+}
+\makeatother
+
+
+
+\newcommand{\highlight}[3]{%
+	if (between=\%y0-\%m0-#2 and \%y0-\%m0-#3) [
+		white,
+		execute at end day scope={%
+			\begin{pgfonlayer}{background}%
+				\fill[#1, rounded corners=3mm]%
+				([shift={(-22.5mm,2mm)}]cal-\%y0-\%m0-\%d0.south east)%
+				rectangle%
+				([shift={(.5mm,-2mm)}]cal-\%y0-\%m0-\%d0.north east);
+			\end{pgfonlayer}%
+		},%
+	]
+}
+
+\NewEnviron{Calendar}[1][\the\year-\the\month]{%
+	\begin{tikzpicture}[remember picture]%
+		\node[%
+			draw=main-bg,
+			line width=2mm,
+			rounded corners=1cm,
+			inner sep=5mm,
+		] (content) {
+			\begin{tikzpicture}
+				\calendar (cal) [%
+					xshift=-1em,
+					week list,
+					dates=#1-01 to #1-last,
+					month xshift=1pt,
+					month label above centered,
+					month text=\textcolor{main-bg}{\bfseries\%mt\%y0},
+					day xshift=18mm,
+					day headings=main-bg,
+					day letter headings,
+				]
+					if (weekend) [text=black!25]
+					\BODY%
+				;%
+			\end{tikzpicture}
+		};
+	\end{tikzpicture}
+}
+
+
+
+\pgfkeys{
+	/newsletter/Event/.cd,
+	day/.store in=\eventday,
+	day/.default={1}, day,
+	colour/.store in=\eventcolour,
+	colour/.default={violet}, colour,
+	title/.store in=\eventtitle,
+	title/.default={Title}, title,
+	organiser/.store in=\eventorganiser,
+	organiser/.default={Company}, organiser,
+	time/.store in=\eventtime,
+	time/.default={All day}, time,
+	link/.store in=\eventlink,
+	link/.default={}, link,
+}
+
+\newcommand{\Event}[1][]{
+	\tikzset{/newsletter/Event/.cd,#1}%
+	\href{\eventlink}{%
+		\begin{tikzpicture}
+			\node[%
+				inner sep=3mm,
+				outer sep=0,
+				fill=\eventcolour,
+				rounded corners=3mm,
+			] (date) {%
+				\parbox{15mm}{%
+					\color{white}\centering\fontsize{30}{36}\selectfont%
+					\eventday%
+				}%
+			};
+			\node[anchor=north west] (info) at ([xshift=5mm]date.north east) {%
+				\parbox{0.15\paperwidth}{%
+					\fontsize{24}{30}\selectfont\raggedright
+					\textcolor{black}{\bfseries \eventtitle} \newline
+					\color{black!60}\eventorganiser \newline
+					\itshape\color{black!40}\eventtime
+				}
+			};
+		\end{tikzpicture}
+	}
+}
+
+\newcommand{\EventList}[1][]{%
+	\tikz\node[] {%
+		\parbox{0.1\nlwidth}{%
+			#1%
+		}%
+	};
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
