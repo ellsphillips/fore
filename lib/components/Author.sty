@@ -9,6 +9,8 @@
 	email/.initial,
 	team/.store in=\newsletter@Author@team,
 	team/.default={}, team,
+	width/.store in=\newsletter@Author@width,
+	width/.default={0.2\nlwidth}, width,
 }
 
 
@@ -27,7 +29,7 @@
 			};%
 		%
 			\node[anchor=west] at ([shift={(0.25\nlmargin,0)}]author-img.east) {%
-				\parbox{0.2\nlwidth}{%
+				\parbox{\newsletter@Author@width}{%
 					\small%
 					\textbf{\newsletter@Author@name}\newline%
 					\textit{\newsletter@Author@team}%
