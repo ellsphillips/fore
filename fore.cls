@@ -39,6 +39,7 @@
 \usepackage[export]{adjustbox}
 \usepackage{array}
 \usepackage{epstopdf}
+\usepackage{fontawesome}
 
 \usepackage{tikz}
 \usetikzlibrary{

@@ -1,18 +1,104 @@
 \begin{Page}
 	
-	\Title[ref=article, alignment=\centering]{Read all about it}
+	\Title[ref=presentations]{In case you missed it...}%
 	
-	\begin{Tile}
-		\begin{Article}
-			\lipsum[1-4] \newline
-			
-			\Author[%
-				name=Elliott Phillips,
-				team=Data Scientist,
-				image=img/ep.jpg,
-				email=elliott.phillips.dev@gmail.com,
-			]
-		\end{Article}
-	\end{Tile}
+	\begin{Slides}[%
+		first={%
+			\Thumbnail[%
+				image={example-image-a},
+				url={https://www.github.com/ellsphillips/fore},
+				width={0.66\nlwidth},
+			]%
+		},
+		second={%
+			\Thumbnail[%
+				image={example-image-b},
+				url={https://www.github.com/ellsphillips/doctor},
+				width={0.33\nlwidth-.5\nlmargin},
+			]%
+		},
+		third={%
+			\Thumbnail[%
+				image={example-image-c},
+				url={https://www.github.com/ellsphillips/ons.dev},
+				width={0.33\nlwidth-.5\nlmargin},
+			]%
+		},
+		]
+		\Author[%
+			name={A dynamic TeX newsletter},
+			team={Elliott Phillips, Data Scientist},
+			image=img/ep.jpg,
+			image width=1,
+		]
+		
+		A \LaTeX{} class that extends beamer, Fore provides a simple, modular and accessible component library to procedurally and rapidly build material newsletters and posters.%
+		
+		\Spacer[height=\nlmargin]%
+		
+		\Author[%
+			name={Automating data-driven reports},
+			team={Elliott Phillips, Data Scientist},
+			image=img/ep.jpg,
+			image width=1,
+		]
+		
+		An automated documentation assistant for procedural, data-driven reporting. Doctor simplifies the reporting build process through an intuitive Python API and customisable \LaTeX{} class to responsively markup Pythonic data objects to professionally typeset lightweight documents.%
+		
+		\Spacer[height=\nlmargin]%
+		
+		\Author[%
+			name={ons.dev},
+			team={Elliott Phillips, Data Scientist},
+			image=img/ep.jpg,
+			image width=1,
+		]%
+		
+		A new platform to accelerate learning across several technical disciplines, bridging the gap between junior and senior development roles.%
+	\end{Slides}
+	
+	
+	
+	\Spacer[height=\nlmargin]
+	
+	
+	
+%	\Button[link=https://www.github.com/ellsphillips/fore]
+%	
+%	\Button[%
+%		text={article},
+%		link=https://www.github.com/ellsphillips/fore,
+%	]
+%	
+%	\Button[%
+%		variant=secondary,
+%		text={article},
+%		link=https://www.github.com/ellsphillips/fore,
+%	]
+	
+	
+	
+	\Title[ref=article, alignment=\centering]{Article of interest}
+
+	\begin{Article}
+		\Author[%
+			name=Elliott Phillips,
+			team=Data Scientist,
+			image=img/ep.jpg,
+			email=elliott.phillips.dev@gmail.com,
+		]
+		
+		\vskip1.25\baselineskip%
+		
+		\expandafter\lipsum[1-2]\expandafter\lipsum[4]%
+		
+		\vskip\baselineskip%
+		
+		\Rounded{\includegraphics[width=\columnwidth]{example-image}}%
+		
+		\vskip\baselineskip%
+		
+		\expandafter\lipsum[5-7]%
+	\end{Article}
 
 \end{Page}
