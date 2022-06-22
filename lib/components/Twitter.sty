@@ -1,0 +1,27 @@
+\definecolor{twitter-blue}{HTML}{1DA1F2}
+
+
+\newcommand{\verified}[1][1]{%
+	\raisebox{-.15\baselineskip}{%
+		\begin{tikzpicture}[scale=#1]%
+			\node[%
+				draw,
+				fill,
+				twitblue,
+				cloud,
+				cloud puffs=8,
+				cloud puff arc=135,
+				inner sep={#1*0.66ex},
+			] {};
+		%
+			\draw[%
+				white,
+				xshift=5mm,
+				scale=0.5,
+				line cap=round,
+				line width={#1*1mm},
+				line join=round,
+			] (-.4,-.05) -- (-.1,-.3) -- (.4,.4);
+		\end{tikzpicture}%
+	}
+}

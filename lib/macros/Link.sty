@@ -1,0 +1,22 @@
+\newcommand{\email}[2]{%
+	\bgroup%
+	\color{main-fg}%
+	\raisebox{.35\baselineskip}{%
+		\faMailForward%
+	}%
+	\hspace{-2.1ex}%
+	\href{#1}{#2}%
+	\egroup%
+}
+
+\newcommand{\website}[2]{%
+	\bgroup%
+	\color{main-fg}%
+	\;\raisebox{.05\baselineskip}{%
+		\resizebox{!}{.35\baselineskip}{%
+			\reflectbox{\faLink}%
+		}%
+	}%
+	\,\href{#1}{#2}%
+	\egroup%
+}

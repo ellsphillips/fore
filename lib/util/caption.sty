@@ -1,0 +1,60 @@
+\RequirePackage{hyperref}
+\RequirePackage{hypcap}
+
+\RequirePackage[capitalise]{cleveref}
+\AtBeginDocument{%
+	\crefname{equation}{eEquation}{equations}%
+	\crefname{chapter}{Chapter}{chapters}%
+	\crefname{section}{Section}{sections}%
+	\crefname{appendix}{Appendix}{appendices}%
+	\crefname{enumi}{Item}{items}%
+	\crefname{footnote}{Footnote}{footnotes}%
+	\crefname{figure}{Figure}{figures}%
+	\crefname{table}{Table}{tables}%
+	\crefname{theorem}{Theorem}{theorems}%
+	\crefname{lemma}{Lemma}{lemmas}%
+	\crefname{corollary}{Corollary}{corollaries}%
+	\crefname{proposition}{Proposition}{propositions}%
+	\crefname{definition}{Definition}{definitions}%
+	\crefname{result}{Result}{results}%
+	\crefname{example}{Example}{examples}%
+	\crefname{remark}{Remark}{remarks}%
+	\crefname{note}{Note}{notes}%
+}
+
+\hypersetup{hidelinks}
+\addto\extrasenglish{
+	\def\sectionautorefname{Section}
+	\def\chapterautorefname{Chapter}
+}
+\setlength{\XeTeXLinkMargin}{-1pt}
+
+\makeatletter
+\newcommand{\refer}[2][\@nil]{%
+	\def\tmp{#1}%
+	\begingroup
+		\bfseries\color{main-bg}%
+		\ifx\tmp\@nnil
+			\cref{#2}%
+		\else%
+			\hyperref[#2]{#1}%
+		\fi%
+	\endgroup
+}
+\makeatother
+
+
+
+\setbeamertemplate{caption}[numbered]
+
+\usepackage[%
+font=footnotesize,
+labelfont={
+	color=main-bg,
+	bf,
+},
+textfont=it,
+%	justification=raggedright,
+singlelinecheck=false,
+format=hang,
+]{caption}
